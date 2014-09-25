@@ -1,0 +1,8 @@
+{
+    "error.title": "Error Occurred",
+    "error.description": "Please visit our site later",
+    "error.title.500": "The page is temporarily unavailable ",
+    "error.description.500": "Please visit this page later.",
+    "error.title.404": "Page not found",
+    "error.description.404": "The page requested is not found. You can go to the <a href='/'>main page</a>."
+}
