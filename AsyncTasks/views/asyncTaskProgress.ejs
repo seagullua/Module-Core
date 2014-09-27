@@ -1,0 +1,12 @@
+<div class="async-task-progressbar">
+    <div class="progress progress-lg progress-striped active async-task-progress-container">
+        <div class="progress-bar" style="width: 0%;"
+             data-async-task-redirect="<%= redirectAfter %>"
+             data-async-task-duration="<%= expectedDuration %>"
+             data-async-task-id="<%= taskId %>"
+             data-async-task-timeout="<%= timeout %>">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+    <div class="alert alert-danger async-task-error" style="display: none;"><%- timeoutError %></div>
+</div>

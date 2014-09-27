@@ -18,12 +18,14 @@ function getScheme(name) {
 
 global.model = function(package_name) {
     var model = getModel(package_name);
+    schema(package_name);
     return function() {
         return model.val;
     }
 }
 
 global.service = function(package_name) {
+    schema(package_name);
     var scheme = getScheme(package_name);
     return scheme.service;
 }
@@ -31,8 +33,10 @@ global.service = function(package_name) {
 global.schema = function(package_name) {
     var scheme = getScheme(package_name);
     if(!scheme.val) {
+        console.log("+S: ", package_name);
         var scheme_module = include(package_name);
         scheme.val = scheme_module.schema;
+
         if('modelName' in scheme_module) {
             scheme.name = scheme_module.modelName;
         } else {
@@ -54,6 +58,7 @@ exports.configureBeforeLaunch = function() {
         var schema = getScheme(name);
         var use_name = schema.name;
         var model = getModel(name);
+        //console.log("S:   ", schema);
         model.val = mongoose.model(use_name, schema.val);
     }
 }
