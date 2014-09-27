@@ -1,7 +1,7 @@
 var Config = include('Core/Config');
 var raven = require('raven');
 
-exports.configureErrorHandler = function(app) {
+exports.configureErrorHandlers = function(app) {
     app.use(raven.middleware.express(Config.sentry.url));
 }
 
