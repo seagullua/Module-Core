@@ -120,7 +120,6 @@
 	"auth.sign_up.page_title": "Sign In or Sign Up",
 	"auth.sign_up.error_empty_email": "E-mail should not be empty",
 	"auth.sign_up.sign_in_error": "There is error during sign in. Please try again later",
-	"auth.wrong_password": "The password you have entered is wrong. <br>You can <a href='/restore-password' class='alert-link'>restore your password</a>.",
 	"auth.sign_up.error_empty_password": "Password should not be empty",
 	"main_page.sing_up.text": "Sign Up",
 	"main_page.sign_in.forgot_password": "You can restore your password",

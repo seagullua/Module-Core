@@ -1,0 +1,4 @@
+{
+    "auth.wrong_password": "Пароль введений вами хибний. <br>Ви можете <a href='/restore-password' class='alert-link'>відновити ваш пароль</a>.",
+    "auth.wrong_email": "Немає користувача з такою електронною адресою"
+}

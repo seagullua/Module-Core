@@ -111,7 +111,6 @@
 	"auth.sign_up.page_title": "Увійдіть або Зареєструйтесь",
 	"auth.sign_up.error_empty_email": "Пошта не може бути порожньою",
 	"auth.sign_up.sign_in_error": "Сталася помилка під час входу на сайт. Спробуйте ще раз. ",
-	"auth.wrong_password": "Пароль введений вами хибний. <br>Ви можете <a href='/restore-password' class='alert-link'>відновити ваш пароль</a>.",
 	"auth.sign_up.error_empty_password": "Пароль не може бути порожнім",
 	"main_page.sing_up.text": "Зареєструватися",
 	"main_page.sign_in.forgot_password": "Ви можете <a href='/restore-password'>відновити Ваш пароль</a>",
@@ -481,6 +480,6 @@
 	"slider.editor.subtitle": "Конструктор обкладинок та рукопису допоможе вам!",
 	"publishing.error": "publishing.error",
 	"book_info.button.publishing_history.download_epub": "Скачати ePub",
-	"auth.wrong_email": "Немає користувача з такою електронною адресою",
+
 	"qpub.beta_message": "Сервіс знаходиться в режимі бета-тестування. Для додаткової інформації або для створення аккаунту зверніться до <a class='alert-link' href='mailto:info@qpub.org'>info@qpub.org</a>"
 }
