@@ -1,0 +1,15 @@
+{
+    "auth.sign_up.form_title": "Sign Up",
+    "auth.sign_up.form_description": "Please fill in form to create an account.",
+    "auth.sign_up.email_label": "Your e-mail:",
+    "auth.sign_up.email_placeholder": "email@mail.com",
+    "auth.sign_up.password_label": "Your password:",
+    "auth.sign_up.password_placeholder": "password",
+    "auth.sign_up.button_sign_up": "Sign Up",
+    "auth.sign_up.error_empty_email": "E-mail should not be empty",
+    "auth.sign_up.sign_in_error": "There is error during sign in. Please try again later",
+    "auth.sign_up.error_empty_password": "Password should not be empty",
+    "auth.sign_in.form_title": "Sign In",
+    "auth.sign_in.form_description": "Please enter your e-mail and password to sign in.",
+    "auth.sign_in.button": "Sign In"
+}

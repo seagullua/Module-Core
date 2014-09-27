@@ -50,12 +50,73 @@ passport.deserializeUser(function (req, id, done) {
         done(null, user);
     });
 });
+
+
+function signUpUser(email, password, callback) {
+    var password = encodePassword(password);
+    function onError(err) {
+        console.error(err);
+        callback({message: 'auth.internal_error'});
+    }
+
+    UserService.findUserByEmail(email, function(err, user){
+        if(err) {
+            return onError(err);
+        }
+
+        if(user) {
+            callback({message: 'auth.user_exists'});
+        } else {
+            UserService.createUser(email, password, function(err, user){
+                if(err) {
+                    return onError(err);
+                }
+                callback(null, user);
+            });
+        }
+    });
+}
+
+function signInUser(email, password, callback) {
+    var req = this;
+    var res = this.res;
+
+    function onError(err) {
+        console.error(err);
+        callback({message: 'auth.internal_error'});
+    }
+
+    req.body.email = email;
+    req.body.password = password;
+
+    passport.authenticate('local',
+        function (err, user, info) {
+            if (err) {
+                return onError(err);
+            }
+            else {
+                if (user) {
+                    req.logIn(user, function (err) {
+                        if (err) {
+                            return onError(err);
+                        }
+                        callback(null, user);
+                    });
+                }
+                else {
+                    return callback(info);
+                }
+            }
+        }
+    )(req, res);
+}
+
+exports.signUpUser = signUpUser;
+
 exports.configureModules = function(app) {
+    app.request.signInUser = signInUser;
+    app.request.signUpUser = signUpUser;
     app.use(passport.initialize());
     app.use(passport.session());
 }
 
-exports.signUpUser = function(email, password, callback) {
-    var password = encodePassword(password);
-    UserService.createUser(email, password, callback);
-}

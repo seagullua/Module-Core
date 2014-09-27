@@ -1,3 +1,4 @@
 module.exports = function(req, res) {
-    res.send("Sign OUT");
+    req.logout();
+    res.redirect('/');
 }

@@ -1,0 +1,15 @@
+{
+    "auth.sign_up.form_title": "Реєстрація",
+    "auth.sign_up.form_description": "Заповність необхідні поля для реєстрації.",
+    "auth.sign_up.email_label": "Ваш e-mail:",
+    "auth.sign_up.email_placeholder": "email@mail.com",
+    "auth.sign_up.password_label": "Ваш пароль:",
+    "auth.sign_up.password_placeholder": "пароль",
+    "auth.sign_up.button_sign_up": "Зареєструватись",
+    "auth.sign_up.error_empty_email": "Пошта не може бути порожньою",
+    "auth.sign_up.sign_in_error": "Сталася помилка під час входу на сайт. Спробуйте ще раз. ",
+    "auth.sign_up.error_empty_password": "Пароль не може бути порожнім",
+    "auth.sign_in.form_title": "Увійти",
+    "auth.sign_in.form_description": "Уведіть свої дані для того, щоб увійти в систему",
+    "auth.sign_in.button": "Увійти"
+}
