@@ -9,7 +9,7 @@ exports.post = function(req, res) {
         if(err) {
             showForm(req, res, err.message);
         } else {
-            res.redirect('/');
+            ME.getOnSignInAction()(req, res);
         }
     });
 }
