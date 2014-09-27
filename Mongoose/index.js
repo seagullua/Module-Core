@@ -10,7 +10,7 @@ function getModel(name) {
 
 function getScheme(name) {
     if(!(name in __schemes)) {
-        __schemes[name] = {val: null};
+        __schemes[name] = {val: null, service: {} };
     }
     return __schemes[name];
 }
@@ -23,15 +23,26 @@ global.model = function(package_name) {
     }
 }
 
+global.service = function(package_name) {
+    var scheme = getScheme(package_name);
+    return scheme.service;
+}
+
 global.schema = function(package_name) {
     var scheme = getScheme(package_name);
     if(!scheme.val) {
         var scheme_module = include(package_name);
-        scheme.val = scheme_module.scheme;
+        scheme.val = scheme_module.schema;
         if('modelName' in scheme_module) {
             scheme.name = scheme_module.modelName;
         } else {
             scheme.name = package_name;
+        }
+
+        for(var key in scheme_module) {
+            if(key != 'modelName' && key != 'schema') {
+                scheme.service[key] = scheme_module[key];
+            }
         }
     }
     return scheme.val;
