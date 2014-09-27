@@ -1,6 +1,6 @@
 var express = require('express');
 var res = express.response;
-var req = express.response;
+var req = express.request;
 
 var ME = include('Core/ErrorHandler');
 var Config = include('Core/Config');
@@ -14,7 +14,9 @@ res.showError = function(error_code, err) {
         err: err
     });
 };
-req.showError = res.showError;
+req.showError = function(error_code, err) {
+    this.res.showError(error_code, err);
+}
 
 /**
  * Handles all not-found errors
