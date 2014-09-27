@@ -1,27 +1,33 @@
 exports.configureModules = function(app) {
-    app.locals.page = {
-        keywords: '',
-        title: '',
-        description: ''
-    };
+    app.request.page = null;
 
-    //DEPRECATED
-    app.request.page = {};
-
+    app.locals.pageMetaInit = function() {
+        if(!this.req.page) {
+            this.req.page = {
+                title: '',
+                description: '',
+                keywords: ''
+            };
+        }
+    }
     app.locals.pageTitle = function(title) {
-        this.page.title = title;
+        this.pageMetaInit();
+        this.req.page.title = title;
     }
 
     app.locals.pageKeywords = function(keywords) {
-        this.page.keywords = keywords;
+        this.pageMetaInit();
+        this.req.page.keywords = keywords;
     }
 
     app.locals.pageDescription = function(description) {
-        this.page.description = description;
+        this.pageMetaInit();
+        this.req.page.description = description;
     }
 
-//    app.use(function(req, res, next){
-//        res.locals.page = req.page;
-//        next();
-//    });
+    app.locals.getPage = function() {
+        this.pageMetaInit();
+        return this.req.page;
+    }
+
 }
