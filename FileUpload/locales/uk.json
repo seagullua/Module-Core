@@ -1,0 +1,6 @@
+{
+    "common.file_upload.choose_file": "Оберіть файл...",
+    "common.file_upload.file_formats_supported(formats:%s)": "Наш сервіс підтримує наступні формати файлів: %s.",
+    "common.file_upload.upload_error": "Сталася помилка під час завантаження файлу. Спробуйте ще раз.",
+    "common.file_upload.wrong_format": "Такий формат файлу нами не підтримується. Будь ласка, оберіть інший файл."
+}

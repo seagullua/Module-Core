@@ -1,0 +1,11 @@
+<div class="input-group">
+    <span class="input-group-btn">
+        <span class="btn btn-primary btn-file">
+            <%= chooseButton %> <input type="file" name="<%= fieldName %>" id="<%= fieldName %>">
+        </span>
+    </span>
+    <input type="text" class="form-control" readonly>
+</div>
+<span class="help-block">
+    <%= __('common.file_upload.file_formats_supported(formats:%s)', fileFormats) %>
+</span>
