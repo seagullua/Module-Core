@@ -466,6 +466,6 @@
 	"slider.editor.subtitle": "Конструктор обкладинок та рукопису допоможе вам!",
 	"publishing.error": "publishing.error",
 	"book_info.button.publishing_history.download_epub": "Скачати ePub",
-
+	"auth.wrong_email": "Немає користувача з такою електронною адресою",
 	"qpub.beta_message": "Сервіс знаходиться в режимі бета-тестування. Для додаткової інформації або для створення аккаунту зверніться до <a class='alert-link' href='mailto:info@qpub.org'>info@qpub.org</a>"
 }
