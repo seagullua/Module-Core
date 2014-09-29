@@ -1,6 +1,12 @@
 var __models = {};
 var __schemes = {};
-
+//db/User.js
+//exports.name = "User";
+//exports.schema = new Schema({...});
+//db.User.add({...});
+//db.User.schema.add({});
+//db.User().update()
+//db.findUserById()
 function getModel(name) {
     if(!(name in __models)) {
         __models[name] = {val: null};
