@@ -1,7 +1,7 @@
 /**
  * Created by nastia on 18.05.14.
  */
-var AsyncTask = model('Core/AsyncTasks/Model');
+var AsyncTask = include('Core/AsyncTasks').db.AsyncTask;
 
 
 /**

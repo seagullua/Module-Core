@@ -1,20 +1,13 @@
-var User = model('Core/User');
-var mongoose = require('mongoose')
-    ,Schema = mongoose.Schema;
+var ME = include('Core/User');
+var User = ME.db.User;
 
-
-exports.modelName = 'User';
-exports.schema = new Schema({
-    email:      {type: String,  match: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,  unique: true, required: true, index: true},
-    password:   {type: String, required: true}
-});
 
 function createUser(email, password, callback) {
     User().create({
             email:      email,
             password:   password
         },
-    callback);
+        callback);
 }
 
 function findUserById(id, callback) {

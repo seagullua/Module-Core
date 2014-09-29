@@ -9,4 +9,5 @@ var contentSchema = new Schema({
     error:   { type: String }
 });
 
-module.exports = contentSchema;
+exports.schema = contentSchema;
+exports.name = 'AsyncTask';

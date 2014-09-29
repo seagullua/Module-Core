@@ -1,5 +1,5 @@
 
-var AsyncTaskService = service('Core/AsyncTasks/Model');
+var AsyncTaskService = include('Core/AsyncTasks').db;
 
 /**
  * Registers async task in this session. Return task_id a unique id to track the task

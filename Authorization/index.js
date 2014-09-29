@@ -1,6 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
-var UserService = service('Core/User');
+var UserService = include('Core/User').db;
 
 var Config = include('Core/Config');
 var crypto = require('crypto');

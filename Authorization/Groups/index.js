@@ -4,7 +4,7 @@
 var _ = require('underscore');
 var Config = include('Core/Config');
 
-var UserSchema = schema('Core/User');
+var UserSchema = include('Core/User').db.User.schema;
 
 
 var groups = Config.authorization.groups;
