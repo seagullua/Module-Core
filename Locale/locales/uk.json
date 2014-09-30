@@ -467,5 +467,10 @@
 	"publishing.error": "publishing.error",
 	"book_info.button.publishing_history.download_epub": "Скачати ePub",
 	"auth.wrong_email": "Немає користувача з такою електронною адресою",
-	"qpub.beta_message": "Сервіс знаходиться в режимі бета-тестування. Для додаткової інформації або для створення аккаунту зверніться до <a class='alert-link' href='mailto:info@qpub.org'>info@qpub.org</a>"
+	"qpub.beta_message": "Сервіс знаходиться в режимі бета-тестування. Для додаткової інформації або для створення аккаунту зверніться до <a class='alert-link' href='mailto:info@qpub.org'>info@qpub.org</a>",
+	"auth.sign_up.cant_create_user": "auth.sign_up.cant_create_user",
+	"form.book.name.error_text": "form.book.name.error_text",
+	"form.book.subtitle.error_text": "form.book.subtitle.error_text",
+	"form.validator.empty_form": "Це поле не може бути порожнім",
+	"form.validator.too_long": "form.validator.too_long"
 }
