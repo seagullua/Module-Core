@@ -475,5 +475,7 @@
 	"form.validator.too_long": "Це поле занадто довге",
     "form.validator.not_even": "Кількість сторінок має бути парним числом",
     "form.validator.many_words": "Кількість ключових слів не має перевищувати 5",
-    "form.validator.bad_isbn" : "Значення ISBN не валідне"
+    "form.validator.bad_isbn" : "Значення ISBN не валідне",
+    "form.validator.negative_number" : "Це поле не може бути від'ємним",
+    "form.validator.bad_between_number" : "Це поле може мати значення від 0 до 50"
 }
