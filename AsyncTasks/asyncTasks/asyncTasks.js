@@ -1,5 +1,5 @@
 
-var AsyncTaskService = include('Core/AsyncTasks').db;
+var ME = include('Core/AsyncTasks');
 
 /**
  * Registers async task in this session. Return task_id a unique id to track the task
@@ -7,7 +7,7 @@ var AsyncTaskService = include('Core/AsyncTasks').db;
  * @returns {string}
  */
 function registerAsyncTask(callback) {
-    AsyncTaskService.createAsyncTask(function(err, task){
+    ME.db.createAsyncTask(function(err, task){
         //console.log("Task added: ", task);
         callback(task?task._id:null);
     });
@@ -21,7 +21,7 @@ function registerAsyncTask(callback) {
  * @param task_id
  */
 function getTaskResult(task_id, callback) {
-    AsyncTaskService.findAsyncTaskById(task_id, function(err, task) {
+    ME.db.findAsyncTaskById(task_id, function(err, task) {
         var t = task;
         if(!t) {
             t = {
@@ -41,7 +41,7 @@ function getTaskResult(task_id, callback) {
  */
 function notifyAsyncTaskFinished(task_id) {
     console.log("Success task", task_id);
-    AsyncTaskService.makeAsyncTaskFinished(task_id, function(err){
+    ME.db.makeAsyncTaskFinished(task_id, function(err){
         if(err) {
             console.error("Async task error", err);
         }
@@ -56,7 +56,7 @@ function notifyAsyncTaskFinished(task_id) {
  */
 function notifyAsyncTaskFailed(task_id, error) {
     console.log("Fail task: "+task_id);
-    AsyncTaskService.makeAsyncTaskFailed(task_id, error, function(err){
+    ME.db.makeAsyncTaskFailed(task_id, error, function(err){
         if(err) {
             console.error("Async task error", err);
         }
