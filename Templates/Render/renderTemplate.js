@@ -12,8 +12,10 @@ var __cache = {};
  * @param options
  * @returns {String}
  */
-function renderTemplate(res, file, options) {
-    var locals = res.locals;
+function renderTemplate(locals, file, options) {
+    if(!options) {
+        options = {};
+    }
     for(var k in locals) {
         options[k] = locals[k];
     }
