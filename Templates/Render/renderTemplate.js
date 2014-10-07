@@ -19,6 +19,7 @@ function renderTemplate(locals, file, options) {
     for(var k in locals) {
         options[k] = locals[k];
     }
+    options.filename = file;
     if(!(file in __cache)) {
         if(path.extname(file) != '.ejs') {
             file += '.ejs';
