@@ -1,3 +1,4 @@
+// jshint ignore: start
 /*!
  * jQuery JavaScript Library v2.0.3
  * http://jquery.com/
