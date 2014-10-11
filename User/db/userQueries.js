@@ -1,9 +1,9 @@
 var ME = include('Core/User');
-var User = ME.db.User;
+//var User = ME.db.User;
 
 
 function createUser(email, password, callback) {
-    User().create({
+    ME.db.User().create({
             email:      email,
             password:   password
         },
@@ -11,13 +11,13 @@ function createUser(email, password, callback) {
 }
 
 function findUserById(id, callback) {
-    User().findOne({
+    ME.db.User().findOne({
         _id: id
     }, callback);
 }
 
 function findUserByEmail(email, callback) {
-    User().findOne({
+    ME.db.User().findOne({
         email: email
     }, callback);
 }
