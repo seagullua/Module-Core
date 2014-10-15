@@ -1,0 +1,24 @@
+<form class="form-horizontal description-form validate-form" role="form" action="" method="post" data-form-name="<%= formData.id %>">
+
+    <script>
+        if(typeof(form) == "undefined") {
+            form = {};
+        }
+        form['<%= formData.id %>'] = <%- JSON.stringify(formData) %>;
+    </script>
+
+    <% for(var i=0; i<formFieldsWidgets.length; ++i) {
+    var field_html = widget(formFieldsWidgets[i]);
+    %>
+    <%- field_html %>
+    <% }%>
+
+
+    <div class="text-right col-sm-12">
+        <div class="row">
+            <input type="submit" id="to-submit" class="btn btn-primary btn-lg" value="<%= __('book_description.button.save') %>"/>
+        </div>
+    </div>
+</form>
+
+<% js(validatorJS) %>

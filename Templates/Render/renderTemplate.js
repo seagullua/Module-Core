@@ -13,11 +13,18 @@ var __cache = {};
  * @returns {String}
  */
 function renderTemplate(locals, file, options) {
+    //Check if options defined
     if(!options) {
         options = {};
     }
+
+    //Copy locals to options
     for(var k in locals) {
-        options[k] = locals[k];
+        //Do not override
+        if(!(k in options)) {
+            options[k] = locals[k];
+        }
+
     }
     options.filename = file;
     if(!(file in __cache)) {

@@ -1,0 +1,17 @@
+<div class="form-group">
+    <label for="<%= field.id %>" class="col-sm-2 control-label <%= field.optional?"optional":""%>">
+        <%= __(field.title) %>
+    </label>
+    <div class="col-sm-10">
+        <% for (var i = 0; i <  field.items.length; i++) {
+            var list_item_name= field.items[i].name;
+        %>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="<%= field.items[i].id %>" name="<%= field.id %>" <%= field.value.indexOf(field.items[i].id)>-1?'checked':''%>><%= list_item_name %>
+            </label>
+        </div>
+        <% } %>
+        <input type="hidden" name="<%= field.id %>" value="">
+     </div>
+</div>

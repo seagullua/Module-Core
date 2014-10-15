@@ -1,0 +1,14 @@
+<div class="form-group">
+    <label for="<%= field.id %>" class="col-sm-2 control-label <%= field.optional?"optional":""%>">
+        <%= __(field.title) %>
+    </label>
+    <div class="col-sm-10">
+        <select class="form-control" name="<%= field.id %>">
+            <% for (var i = 0; i <  field.items.length; i++) {
+                var list_item_name= __('language.'+field.items[i].id);
+            %>
+                <option value="<%= field.items[i].id %>" <%= field.value == field.items[i].id?'selected':''%>><%= list_item_name %></option>
+            <% } %>
+        </select>
+    </div>
+</div>
