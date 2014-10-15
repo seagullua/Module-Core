@@ -26,7 +26,6 @@ function renderTemplate(locals, file, options) {
         }
         __cache[file] = fs.readFileSync(file, 'utf-8');
     }
-
     return ejs.render(__cache[file], options);
 }
 

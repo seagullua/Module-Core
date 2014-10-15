@@ -7,5 +7,7 @@
     <input type="text" class="form-control" readonly>
 </div>
 <span class="help-block">
-    <%= __('common.file_upload.file_formats_supported(formats:%s)', fileFormats) %>
+    <%= __('common.file_upload.file_formats_supported(formats:%s)', fileFormats+"") %>
 </span>
+
+<% js(jsFile) %>
