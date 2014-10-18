@@ -1,4 +1,6 @@
 var assert = require('assert');
+var localeHolder = require('../localeHolder');
+
 
 
 it('Translation for en', function () {
@@ -6,5 +8,5 @@ it('Translation for en', function () {
 });
 
 it('Translation for uk', function () {
-    assert.equal(1,2);
+    assert.equal(1,localeHolder.getModulesWithLocale());
 });
