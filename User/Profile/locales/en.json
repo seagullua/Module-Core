@@ -1,0 +1,19 @@
+{
+    "user_profile.button.save_changes": "Save Changes",
+    "user_profile.button.change_avatar": "Change avatar",
+    "user_profile.confirmed": "Confirmed",
+    "user_profile.saved": "Well done!",
+    "user_profile.help_name": "Type your name",
+    "user_profile.button.help_surname": "Type your surname",
+    "user_profile.confirmed.information": "You haven't confirmed your e-mail. Please follow the link which you received on registration. If you lost the email you can ",
+    "user_profile.confirmed.resend_confirmation": " receive the confirmation link again.",
+    "user_profile.button.change_password": "Change password",
+    "user_profile.change_password.old_password": "Old password",
+    "user_profile.change_password.new_password": "New password",
+    "user_profile.change_password.new_password_confirm": "Confirm new password",
+    "user_profile.change_password.new_passwords_dont_match": "New passwords do not match",
+
+    "sing_up.email_confirmation_popup.email_confirmation_text": "Email confirmation",
+    "sing_up.email_confirmation_popup.resent": "Email confirmation link was successfully resent",
+    "sing_up.email_confirmation_popup.successful_email_confirmation_text": "Your email is successfully confirmed"
+}

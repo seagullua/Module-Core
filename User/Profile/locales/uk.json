@@ -1,0 +1,20 @@
+{
+    "user_profile.confirmed": "Підтверджено",
+    "user_profile.saved": "Збережено!",
+    "user_profile.help_name": "Введіть своє ім’я",
+    "user_profile.button.help_surname": "Введіть своє прізвище",
+    "user_profile.confirmed.information": "Ви не підтвердили свою електронну пошту. Будь ласка, пройдіть по посиланню, яке отримали при реєстрації. Якщо ви загубили електронного листа, ви можете",
+    "user_profile.confirmed.resend_confirmation": "отримати підтвердження знову.",
+    "user_profile.button.change_password": "Змінити пароль",
+    "user_profile.change_password.old_password": "Старий пароль",
+    "user_profile.change_password.new_password": "Новий пароль",
+    "user_profile.change_password.new_password_confirm": "Підтвердьте новий пароль",
+    "user_profile.change_password.new_passwords_dont_match": "Веевдені паролі не збігаються",
+    "user_profile.button.save_changes": "Зберегти зміни",
+    "user_profile.button.change_avatar": "Змінити Аватар",
+
+    "sing_up.email_confirmation_popup.email_confirmation_text": "Підтвердження пошти",
+    "sing_up.email_confirmation_popup.resent": "Посилання на підтвердження пошти успішно вам надіслано знову",
+    "sing_up.email_confirmation_popup.successful_email_confirmation_text": "Ваша пошта успішно підтверджена!",
+
+}
