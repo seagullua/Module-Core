@@ -10,4 +10,4 @@ exports.configureModules = function(app) {
             db: Config.dbSettings.db,
             host: Config.dbSettings.host
         })}));
-}
+};

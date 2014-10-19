@@ -13,5 +13,5 @@ function formatDate(locale, date) {
 exports.configureModules = function(app) {
     app.locals.formatDate = function(date) {
         return formatDate(this.getLocale(), date);
-    }
-}
+    };
+};

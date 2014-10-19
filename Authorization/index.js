@@ -52,8 +52,8 @@ passport.deserializeUser(function (req, id, done) {
 });
 
 
-function signUpUser(email, password, callback) {
-    var password = encodePassword(password);
+function signUpUser(email, password_plain, callback) {
+    var password = encodePassword(password_plain);
     function onError(err) {
         console.error(err);
         callback({message: 'auth.internal_error'});
@@ -123,5 +123,5 @@ exports.configureModules = function(app) {
         res.locals.user = req.user;
         next();
     });
-}
+};
 

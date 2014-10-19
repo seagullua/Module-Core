@@ -8103,7 +8103,7 @@ jQuery.Animation = jQuery.extend( Animation, {
 });
 
 function defaultPrefilter( elem, props, opts ) {
-	/* jshint validthis: true */
+
 	var prop, value, toggle, tween, hooks, oldfire,
 		anim = this,
 		orig = {},

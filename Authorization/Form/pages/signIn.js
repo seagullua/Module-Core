@@ -12,8 +12,8 @@ exports.post = function(req, res) {
             ME.getOnSignInAction()(req, res);
         }
     });
-}
+};
 
 exports.get = function(req, res) {
     showForm(req, res, null);
-}
+};

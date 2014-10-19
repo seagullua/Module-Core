@@ -16,7 +16,7 @@ res.showError = function(error_code, err) {
 };
 req.showError = function(error_code, err) {
     this.res.showError(error_code, err);
-}
+};
 
 /**
  * Handles all not-found errors
@@ -49,4 +49,4 @@ function fatalErrorHandler(err, req, res, next)
 exports.configureErrorHandlers = function(app) {
     app.use(notFoundErrorHandler);
     app.use(fatalErrorHandler);
-}
+};

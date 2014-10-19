@@ -10,10 +10,10 @@ exports.configureModules = function(app) {
 
     localeHolder.setLocales(Config.locale.supported);
     app.use(i18n.init);
-}
+};
 
 
 
 exports.addModuleLocale = function(module_name, translation_cache) {
     localeHolder.addModuleLocale(module_name, translation_cache);
-}
+};

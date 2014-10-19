@@ -28,7 +28,8 @@ function getTaskResult(task_id, callback) {
                 _id: "0",
                 finished: true,
                 success: false,
-                error: "asyncTask.task_was_lost"}
+                error: "asyncTask.task_was_lost"
+            };
         }
         callback(t);
     });

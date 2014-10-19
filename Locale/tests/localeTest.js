@@ -9,7 +9,7 @@ modules.forEach(function(module){
         supported_locales.forEach(function(locale){
             describe('Locale: '+locale, function(){
                 var missing = localeHolder.getMissingTranslation(module, locale);
-                if(missing.length == 0) {
+                if(missing.length === 0) {
                     //Nothing missing
                     it('everything in place', function(){
 

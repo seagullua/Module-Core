@@ -52,7 +52,7 @@ exports.configureModules = function(app) {
             permissions = groups[this.user.group].permissions;
         }
         return isSubset(permissions_arr, permissions);
-    }
+    };
 
     app.request.grantPermissions = function(permissions_arr) {
         if(this.hasPermissions(permissions_arr))
@@ -71,5 +71,5 @@ exports.configureModules = function(app) {
             }
             return false;
         }
-    }
-}
+    };
+};

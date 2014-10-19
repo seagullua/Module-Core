@@ -14,7 +14,7 @@ function showForm(req, res, form_name, message) {
         email: email,
         password: password,
         message: message
-    })
+    });
 }
 
 module.exports = showForm;

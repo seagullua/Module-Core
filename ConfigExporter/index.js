@@ -8,4 +8,4 @@ exports.configureModules = function(app) {
     app.locals.config = Config;
     app.locals.url_server = Config.server.url;
     app.locals.url_content = Config.server.urlcontent;
-}
+};

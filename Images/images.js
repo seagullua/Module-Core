@@ -9,7 +9,7 @@ var gm = require('gm').subClass({ imageMagick: true });
  * @returns {string} in format: _SIZE_ORIGINALNAME
  */
 function getSmallImageName(image_name, size) {
-    if(!size || size == 0) {
+    if(!size || size === 0) {
         return image_name;
     }
     return "_"+size+"_"+image_name;
@@ -48,9 +48,9 @@ function createOneSmallImage(source_file, destination_file_name, original_size, 
         } else {
             callback(null, destination_file_name);
         }
-    }
+    };
 
-    if((w < target_max_size && h < target_max_size) || target_max_size == 0) {
+    if((w < target_max_size && h < target_max_size) || target_max_size === 0) {
         //The scale is not required just copy
         fse.copy(source_file, destination_file_name, callbackFunction);
     } else {
@@ -99,7 +99,7 @@ function saveImage(source_file, destination_file_name, sizes_in, callback) {
             console.error("Image processing error: ",err);
         }
         callback(err, result_path);
-    }
+    };
 
     //Final step moves source file
     function moveSourceFile() {
@@ -133,7 +133,7 @@ function saveImage(source_file, destination_file_name, sizes_in, callback) {
                 }
 
                 //Nothing to process
-                if(!sizes || sizes.length == 0) {
+                if(!sizes || sizes.length === 0) {
                     moveSourceFile();
                 } else {
                     //Process next file

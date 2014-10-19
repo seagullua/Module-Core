@@ -91,5 +91,5 @@ $(function () {
         setTimeout(checkIfBookReady, requests_interval_seconds * 1000);
         //Wait for timeout
         setTimeout(onTimeout, timeout * 1000);
-    })
-})
+    });
+});

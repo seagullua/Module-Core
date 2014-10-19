@@ -13,7 +13,7 @@ exports.configureModules = function(app) {
             this.req.__js = [];
         }
         this.req.__js.push(file_url);
-    }
+    };
 
     /**
      * Returns list of file to include
@@ -37,6 +37,6 @@ exports.configureModules = function(app) {
         }
 
         return result;
-    }
+    };
 
-}
+};

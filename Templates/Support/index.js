@@ -4,4 +4,4 @@ exports.configureModules = function(app) {
         res.locals.req = req;
         next();
     });
-}
+};

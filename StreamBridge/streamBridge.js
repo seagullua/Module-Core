@@ -16,7 +16,7 @@ function Server(server){
      */
     this.addFunction = function(name, function_code) {
         _functions[name] = function_code;
-    }
+    };
 
     function sendResponse(socket, call_id, err, results, output_stream) {
         var stream = ss.createStream();
@@ -47,7 +47,7 @@ function Server(server){
 
                 var callback = function(err, result, output_stream) {
                     sendResponse(socket, id, err, result, output_stream);
-                }
+                };
 
                 if(function_name in _functions) {
                     _functions[function_name](params, stream, callback);
@@ -56,7 +56,7 @@ function Server(server){
                 }
             });
         });
-    }
+    };
 }
 
 var counter = 1;
@@ -120,11 +120,11 @@ function Client(url) {
                 callback(new Error("Can't connect"));
             }
         });
-    }
+    };
 
     this.hasConnection = function() {
         return _has_connection;
-    }
+    };
 
     this.callFunction = function(name, params, stream_to_pipe, callback) {
         var id = counter;
@@ -149,7 +149,7 @@ function Client(url) {
             callback(new Error("No connection to server"));
         }
 
-    }
+    };
 }
 
 exports.Client = Client;

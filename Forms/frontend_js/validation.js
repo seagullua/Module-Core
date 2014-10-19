@@ -6,7 +6,7 @@ function FormValidator(options) {
         var input = $('#'+field.id);
 
         function isTrueISBN(value) {
-            if (value == '') {
+            if (value === '') {
                 return true;
             }
 
@@ -34,11 +34,11 @@ function FormValidator(options) {
                 length = chars.length,
                 sum    = 0,
                 checksum;
-
+            var i;
             switch (type) {
                 case 'ISBN10':
                     sum = 0;
-                    for (var i = 0; i < length - 1; i++) {
+                    for (i = 0; i < length - 1; i++) {
                         sum += ((10 - i) * parseInt(chars[i]));
                     }
                     checksum = 11 - (sum % 11);
@@ -51,8 +51,8 @@ function FormValidator(options) {
 
                 case 'ISBN13':
                     sum = 0;
-                    for (var i = 0; i < length - 1; i++) {
-                        sum += ((i % 2 == 0) ? parseInt(chars[i]) : (parseInt(chars[i]) * 3));
+                    for (i = 0; i < length - 1; i++) {
+                        sum += ((i % 2 === 0) ? parseInt(chars[i]) : (parseInt(chars[i]) * 3));
                     }
                     checksum = 10 - (sum % 10);
                     if (checksum == 10) {
@@ -96,15 +96,16 @@ function FormValidator(options) {
             parent.find('.validator-error').hide();
             var valid = true;
 
+            var error;
             if (field.id == "printedPages") {
                 if (input.val() < 0) {
                     valid = false;
-                    var error = parent.find('.negative-number');
+                    error = parent.find('.negative-number');
                     error.show();
                 }
-                if (input.val() % 2 != 0) {
+                if (input.val() % 2 !== 0) {
                     valid = false;
-                    var error = parent.find('.not-even');
+                    error = parent.find('.not-even');
                     error.show();
                 }
             }
@@ -112,7 +113,7 @@ function FormValidator(options) {
             if (field.id == "numberInSeries") {
                 if (input.val() < 0 || input.val() > 50) {
                     valid = false;
-                    var error = parent.find('.bad-between-number');
+                    error = parent.find('.bad-between-number');
                     error.show();
                 }
             }
@@ -139,26 +140,27 @@ function FormValidator(options) {
 
             console.log(input.val().length);
 
+            var error;
             // checking that there is no more than 5 words here!
             if (field.id == "keyWords") {
-                var words = $.map(input.val().split(/[\s,]+/), function (el) { return el.trim() } );
+                var words = $.map(input.val().split(/[\s,]+/), function (el) { return el.trim(); } );
                 if (words.length > 5) {
                     valid = false;
-                    var error = parent.find('.many-words');
+                    error = parent.find('.many-words');
                     error.show();
                 }
             }
 
             if (input.val().length >= field.max) {
                 valid = false;
-                var error = parent.find('.too-long');
+                error = parent.find('.too-long');
                 error.show();
             }
 
             if(!field.optional) {
-                if(input.val().length == 0) {
+                if(input.val().length === 0) {
                     valid = false;
-                    var error = parent.find('.error-empty');
+                    error = parent.find('.error-empty');
                     error.show();
                 }
             }
@@ -191,7 +193,7 @@ function FormValidator(options) {
             res = res && _on_save[i]();
         }
         return res;
-    }
+    };
 
     var fields = options.fields;
     for(var id in fields) {
@@ -251,7 +253,7 @@ $(function(){
     $descriptionForm.on('submit',function(){
         changes_saved=true;
         console.log('submit');
-    })
+    });
     window.onbeforeunload = function(e){
         if(!changes_saved){
             return warning;
@@ -271,7 +273,7 @@ $(function(){
             changes_saved = true;
             window.location = active_link.attr("href");
         });
-       console.log($descriptionForm.serialize())
+       console.log($descriptionForm.serialize());
         //$('#to-submit').click();
         $('#before-unload-warning').modal('hide');
 
@@ -280,12 +282,12 @@ $(function(){
         $('#before-unload-warning').modal('hide');
         window.location = active_link.attr('href');
         window.onbeforeunload = function(){
-            return;
-        }
+
+        };
     });
 
     // contributors
-    var $descriptionForm = $('.description-form');
+    //var $descriptionForm = $('.description-form');
 
     // Add button click handler
     $descriptionForm.on('click', '.add-contributor', function() {
@@ -397,7 +399,7 @@ $(function(){
     function hideNoCategory () {
         $categoryGroups.each(function () {
             var $this = $(this);
-            if ($this.data('visible') == false) {
+            if ($this.data('visible') === false) {
                 $this.hide();
             }
         });
@@ -414,7 +416,7 @@ $(function(){
     function isCount (number) {
         var count = 0;
         $categoryGroups.each(function () {
-            if ($(this).data('visible') == true) {
+            if ($(this).data('visible') === true) {
                 count++;
             }
         });

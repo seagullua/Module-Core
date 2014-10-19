@@ -13,8 +13,8 @@ exports.post = function(req, res) {
             signIn.post(req, res);
         }
     });
-}
+};
 
 exports.get = function(req, res) {
     showForm(req, res, null);
-}
+};

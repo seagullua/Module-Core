@@ -52,4 +52,4 @@ exports.configureModules = function(app) {
     AuthorizationForm.setOnSignInAction(redirectBack);
     app.request.signInAndRedirectBack = signInAndRedirectBack;
     app.request.signUpAndRedirectBack = signUpAndRedirectBack;
-}
+};

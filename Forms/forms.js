@@ -32,12 +32,12 @@ function generateForm(data, form_format_json, show_validation_errors) {
     for(var i=0; i<form_format_json.length; ++i) {
         var field = form_format_json[i];
 
-        var value = undefined;
-        if(data[field.id] != undefined) {
+        var value;
+        if(data[field.id] !== undefined) {
             value = data[field.id];
         }
 
-        field['value'] = value;
+        field.value = value;
 
         var is_valid = true;
         if(show_validation_errors) {
@@ -66,7 +66,7 @@ function widgetShowForm(form_format_json, data) {
             formData: form_format_json,
             validatorJS: ME.js('validation.js')
         }
-    }
+    };
 }
 
 /**
@@ -113,7 +113,7 @@ var validators = {
     "list-twoItem": notImplemented,
     "number": notImplemented,
     "text": notImplemented
-}
+};
 
 /**
  * Function validates given values and returns only values that are valid

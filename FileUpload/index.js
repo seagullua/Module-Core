@@ -38,5 +38,5 @@ exports.configureModules = function(app){
         } else {
             callback(res.__('common.file_upload.upload_error'));
         }
-    }
-}
+    };
+};

@@ -7,5 +7,5 @@ exports.widgetEnableTableRowClick = function() {
     return {
         view: ME.view('table_row'),
         options: {}
-    }
-}
+    };
+};
