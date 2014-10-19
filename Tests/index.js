@@ -15,6 +15,34 @@ function addTest(module_name, test_file) {
     __test_module[module_name].push(test_file);
     //console.log(__test_module);
 }
+
+/**
+ * Returns the function for testing signle file
+ * @param file_name
+ */
+function testFile(file_name) {
+    return function(){
+        require(file_name);
+    };
+}
+
+/**
+ * Return function for tests in single module
+ * @param files
+ */
+function testModule(files) {
+    return function() {
+        //Iterate over test files
+        for(var i=0; i<files.length; ++i) {
+            var file = files[i];
+            var test_name = path.basename(file, '.js');
+
+            //Run each file separately
+            describe(test_name, testFile(file));
+        }
+    };
+}
+
 /**
  * Runs all registered test
  */
@@ -24,20 +52,7 @@ function runTests() {
     //Iterate over modules with tests
     for(var key in __test_module) {
         //console.error(key, __test_module);
-        describe(key, function(){
-            //Iterate over test files
-            var files = __test_module[key];
-
-            for(var i=0; i<files.length; ++i) {
-                var file = files[i];
-                var test_name = path.basename(file, '.js');
-
-                //Run each file separately
-                describe(test_name, function(){
-                    require(file);
-                });
-            }
-        });
+        describe(key, testModule(__test_module[key]));
     }
 }
 

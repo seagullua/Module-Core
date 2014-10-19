@@ -7,7 +7,7 @@ var images = include('Core/Images');
 function postUserProfile(req,res){
     userService.changeUserName(req.user.id,req.body.name,req.body.surname,function(err){
         if (err) {
-            return res.showError(500)
+            return res.showError(500);
         }
         if(req.body.email){
             userService.changeUserEmail(req.user.id,req.body.email,function(err){
@@ -21,7 +21,7 @@ function postUserProfile(req,res){
             console.log('user updated');
             res.send(200);
         }
-    })
+    });
 }
 function getUserProfile(req, res,error_message) {
     if(req.grantPermissions(['edit_book'])) {
@@ -34,9 +34,9 @@ function getUserProfile(req, res,error_message) {
                 message: error_message
             });
         });
-    };
+    }
 
-};
+}
 
 function resendConfirmation(req, res) {
     if (req.user) {

@@ -14,11 +14,18 @@ describe('JS Hint', function(){
 	output = output.split('\n');
 
 
+    var has_errors = false;
 
     for(var i = 0; i<output.length; ++i) {
         var data = output[i];
         if(data.trim()) {
             it(data.trim(), failTest);
+            has_errors = true;
         }
     }
+
+    it('JSHint check should pass', function(){
+        assert(!has_errors);
+    });
+
 });

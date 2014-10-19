@@ -2,8 +2,8 @@
  * Created by nastia on 12.05.14.
  */
 var UserSchema = include('Core/User').db.User.schema;
-var mongoose = require('mongoose')
-    ,Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 UserSchema.add({
     name:       {type: String, trim: true},

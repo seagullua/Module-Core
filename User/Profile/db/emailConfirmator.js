@@ -53,7 +53,7 @@ function confirmEmail(token, callback) {
         } else {
             EmailConfirmator.remove({token : token}, function(e) {
                 if (e) {
-                    callback(e, null)
+                    callback(e, null);
                 } else {
                     userService.setUserConfirmedEmail(emailConfirmation.email, true, callback);
                 }

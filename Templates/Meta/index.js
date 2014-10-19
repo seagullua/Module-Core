@@ -30,4 +30,4 @@ exports.configureModules = function(app) {
         return this.req.page;
     };
 
-}
+};

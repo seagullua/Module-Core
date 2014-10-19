@@ -17,8 +17,8 @@ describe('User', function() {
     ];
 
     before(function(done){
-        db.collections['users'].drop(function() {
-            db.collections['users'].insert(users, done);
+        db.collections.users.drop(function() {
+            db.collections.users.insert(users, done);
         });
     });
 
@@ -60,7 +60,7 @@ describe('User', function() {
                     done();
                 });
             });
-        })
+        });
     });
 
 });
