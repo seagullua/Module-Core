@@ -1,7 +1,7 @@
 var path = require('path');
 var shelljs = require('shelljs');
 var assert = require('assert');
-
+var Config = include('Core/Config');
 var modules_root = path.join(__dirname, "../../../");
 
 function failTest() {
@@ -9,23 +9,24 @@ function failTest() {
 }
 
 describe('JS Hint', function(){
-    //--reporter node_modules/jshint-json/json.js
-    var output = shelljs.exec('jshint  '+modules_root).output.trim();
-	output = output.split('\n');
+    if(Config.tests.JSHint) {
+        //--reporter node_modules/jshint-json/json.js
+        var output = shelljs.exec('jshint  '+modules_root).output.trim();
+        output = output.split('\n');
 
 
-    var has_errors = false;
+        var has_errors = false;
 
-    for(var i = 0; i<output.length; ++i) {
-        var data = output[i];
-        if(data.trim()) {
-            it(data.trim(), failTest);
-            has_errors = true;
+        for(var i = 0; i<output.length; ++i) {
+            var data = output[i];
+            if(data.trim()) {
+                it(data.trim(), failTest);
+                has_errors = true;
+            }
         }
+
+        it('JSHint check should pass', function(){
+            assert(!has_errors);
+        });
     }
-
-    it('JSHint check should pass', function(){
-        assert(!has_errors);
-    });
-
 });
