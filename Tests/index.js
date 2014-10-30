@@ -43,6 +43,8 @@ function testModule(files) {
     };
 }
 
+var test_list = null;
+
 /**
  * Runs all registered test
  */
@@ -51,10 +53,23 @@ function runTests() {
 
     //Iterate over modules with tests
     for(var key in __test_module) {
+        var execute_test = true;
+
+        //If we have test list check if test is in the list
+        if(test_list && test_list.indexOf(key) < 0) {
+            execute_test = false;
+        }
         //console.error(key, __test_module);
-        describe(key, testModule(__test_module[key]));
+        if(execute_test) {
+            describe(key, testModule(__test_module[key]));
+        }
     }
 }
 
+function setTestList(list) {
+    test_list = list;
+}
+
+exports.setTestList = setTestList;
 exports.addTest = addTest;
 exports.runTests = runTests;

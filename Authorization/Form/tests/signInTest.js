@@ -1,5 +1,4 @@
 var assert = require('assert');
-var UserService = include('Core/User').db;
 var TestsFrontend = include('Core/Tests/Frontend');
 
 var TestApi = include('Core/Authorization/TestApi');

@@ -79,9 +79,13 @@ function submitSignInForm() {
 
 /**
  * Create new user account and signin in it
+ * if the email and password are not given the random are created
  */
-function createNewUserAndSignIn() {
+function createNewUserAndSignIn(email, password) {
     var user = randomUserCredentials();
+
+    user.email = email ? email : user.email;
+    user.password = password ? password : user.password;
 
     return function(browser) {
         browser
