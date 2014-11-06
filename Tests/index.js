@@ -35,10 +35,14 @@ function testModule(files) {
         //Iterate over test files
         for(var i=0; i<files.length; ++i) {
             var file = files[i];
-            var test_name = path.basename(file, '.js');
 
-            //Run each file separately
-            describe(test_name, testFile(file));
+            //Only js file
+            if(path.extname(file).toLowerCase() == ".js") {
+                var test_name = path.basename(file, '.js');
+
+                //Run each file separately
+                describe(test_name, testFile(file));
+            }
         }
     };
 }
