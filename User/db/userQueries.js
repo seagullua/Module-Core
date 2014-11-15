@@ -22,6 +22,15 @@ function findUserByEmail(email, callback) {
     }, callback);
 }
 
+function setUserEmailConfirmed(id, callback) {
+    ME.db.User().findOneAndUpdate({
+        _id: id
+    }, {
+        is_email_confirmed: true
+    }, callback);
+}
+
 exports.createUser = createUser;
 exports.findUserById = findUserById;
 exports.findUserByEmail = findUserByEmail;
+exports.setUserEmailConfirmed = setUserEmailConfirmed;

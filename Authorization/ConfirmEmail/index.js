@@ -1,7 +1,7 @@
 var Urls = include('Core/Urls');
 var Authorization = include('Core/Authorization');
 var EMail = include('Core/EMail');
-
+var User = include('Core/User');
 /**
  * Generates only code for user email confirmation
  * @param user full User object from database
@@ -47,5 +47,44 @@ function sendEmailConfirmationLetter(user, callback) {
         callback(new Error("Core.Authorization.ConfirmEmail.already_confirmed"));
     }
 }
+
+function confirmEmailPage(req, res) {
+    function showPopUp(text) {
+        req.flash('popup', text);
+        res.redirect(Urls.urlMainPage());
+    }
+
+    var email = req.params.email;
+    var confirmation = req.params.confirmation;
+
+    User.db.findUserByEmail(email,function(err,user){
+        if(err){
+            showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
+        } else {
+            if(!user) {
+                //User not found
+                showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
+            } else {
+
+                var user_code = generateUserConfirmationCode(user);
+                if(confirmation != user_code){
+                    showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
+                } else {
+                    User.db.setUserEmailConfirmed(user._id, function(err){
+                        if(err){
+                            showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
+                        } else {
+                            showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_success"));
+                        }
+                    });
+                }
+            }
+        }
+    });
+}
+
+exports.configureRouters = function(app) {
+    app.get(Urls.urlUserEmailConfirmationLink(":email", ":confirmation"), confirmEmailPage);
+};
 
 exports.sendEmailConfirmationLetter = sendEmailConfirmationLetter;
