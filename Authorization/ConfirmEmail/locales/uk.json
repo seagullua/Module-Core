@@ -1,0 +1,4 @@
+{
+  "Core.Authorization.ConfirmEmail.already_confirmed": "Ця електронна адреса вже підтверджена",
+  "Core.Authorization.ConfirmEmail.send_error": "Не вдалося надіслати лист, будь ласка спробуйте пізніше"
+}

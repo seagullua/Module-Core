@@ -1,7 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 var UserService = include('Core/User').db;
-
+var ConfirmEmail = include('Core/Authorization/ConfirmEmail');
 var Config = include('Core/Config');
 var crypto = require('crypto');
 
@@ -71,7 +71,13 @@ function signUpUser(email, password_plain, callback) {
                 if(err) {
                     return onError(err);
                 }
-                callback(null, user);
+
+                ConfirmEmail.sendEmailConfirmationLetter(user, function(err){
+                    if(err) {
+                        return onError(err);
+                    }
+                    callback(null, user);
+                });
             });
         }
     });
@@ -112,6 +118,7 @@ function signInUser(email, password, callback) {
 }
 
 exports.signUpUser = signUpUser;
+exports.encodePassword = encodePassword;
 
 exports.configureModules = function(app) {
     app.request.signInUser = signInUser;

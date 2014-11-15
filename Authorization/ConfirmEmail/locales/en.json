@@ -1,0 +1,4 @@
+{
+  "Core.Authorization.ConfirmEmail.already_confirmed": "This email was already confirmed",
+  "Core.Authorization.ConfirmEmail.send_error": "Unable to send confirmation letter. Please try again later."
+}

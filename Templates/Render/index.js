@@ -11,3 +11,7 @@ exports.configureModules = function(app) {
         return renderTemplate.renderTemplate(this, View.viewFileName(file), options);
     };
 };
+
+exports.renderTemplateLocal = function(locals, file, options) {
+    return renderTemplate.renderTemplate(locals, View.viewFileName(file), options);
+};
