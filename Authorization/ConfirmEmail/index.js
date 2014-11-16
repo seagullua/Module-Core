@@ -29,12 +29,13 @@ function generateUserConfirmationLink(user) {
  * @param user full User object
  * @param callback
  */
-function sendEmailConfirmationLetter(user, callback) {
+function sendEmailConfirmationLetter(user, language, callback) {
     if(!user.is_email_confirmed) {
         EMail.sendEmail(
             "<b>Confirm Email: </b> "+generateUserConfirmationLink(user),
             "Confirm email",
             user.email,
+            language,
             function(err){
                 if(err) {
                     console.error(err);

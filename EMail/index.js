@@ -23,10 +23,10 @@ exports.configureBeforeLaunch = function() {
 
 
 
-function sendEmail(html, subject, receiver, callback) {
+function sendEmail(html, subject, receiver, language, callback) {
     var view = HeaderFooterModule.view('email/basic');
 
-    EmailTemplates.renderEmailTemplate(view, 'en', {html: html}, function(err, html){
+    EmailTemplates.renderEmailTemplate(view, language, {html: html}, function(err, html){
         if (err) {
             console.log(err);
             return callback(err);

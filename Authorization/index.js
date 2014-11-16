@@ -54,6 +54,8 @@ passport.deserializeUser(function (req, id, done) {
 
 function signUpUser(email, password_plain, callback) {
     var password = encodePassword(password_plain);
+    var req = this;
+
     function onError(err) {
         console.error(err);
         callback({message: 'auth.internal_error'});
@@ -72,7 +74,7 @@ function signUpUser(email, password_plain, callback) {
                     return onError(err);
                 }
 
-                ConfirmEmail.sendEmailConfirmationLetter(user, function(err){
+                ConfirmEmail.sendEmailConfirmationLetter(user, req.getLocale(), function(err){
                     if(err) {
                         return onError(err);
                     }
