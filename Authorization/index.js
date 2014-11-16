@@ -74,12 +74,19 @@ function signUpUser(email, password_plain, callback) {
                     return onError(err);
                 }
 
+                //Do not wait while letter is sent
+                callback(null, user);
+
+                //Send letter to confirm
                 ConfirmEmail.sendEmailConfirmationLetter(user, req.getLocale(), function(err){
                     if(err) {
-                        return onError(err);
+                        console.error("Letter not send",err);
+                    } else {
+                        console.log("Confirmation sent");
                     }
-                    callback(null, user);
+
                 });
+
             });
         }
     });

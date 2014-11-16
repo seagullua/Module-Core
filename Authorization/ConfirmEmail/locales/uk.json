@@ -2,5 +2,8 @@
   "Core.Authorization.ConfirmEmail.already_confirmed": "Ця електронна адреса вже підтверджена",
   "Core.Authorization.ConfirmEmail.send_error": "Не вдалося надіслати лист, будь ласка спробуйте пізніше",
   "Core.Authorization.ConfirmEmail.confirm_error": "Сталася помилка під час підтвердження електронної адреси. Спробуйте пізніше",
-  "Core.Authorization.ConfirmEmail.confirm_success": "Електронна адреса успішно підтверджена!"
+  "Core.Authorization.ConfirmEmail.confirm_success": "Електронна адреса успішно підтверджена!",
+  "Core.Authorization.ConfirmEmail.subject": "Підтвердження вашої електронної пошти",
+  "Core.Authorization.ConfirmEmail.confirm_email_description": "Будь-ласка натисність на кнопку для того, щоб активувати вашу адресу електронної пошти.",
+  "Core.Authorization.ConfirmEmail.confirm_email_button": "Підтвердити пошту"
 }

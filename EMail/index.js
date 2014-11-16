@@ -9,7 +9,7 @@ var transport = null;
 var HeaderFooterModule = include(Config.email.letter_header_footer.module);
 var EmailTemplates = include('Core/EMail/Templates');
 
-exports.configureBeforeLaunch = function() {
+exports.configureBeforeLaunch = function () {
     transport = nodemailer.createTransport("SMTP", {
         service: 'gmail',
         auth: {
@@ -21,27 +21,22 @@ exports.configureBeforeLaunch = function() {
 };
 
 
-
-
 function sendEmail(html, subject, receiver, language, callback) {
-    var view = HeaderFooterModule.view('email/basic');
+    var view = HeaderFooterModule.view(Config.email.letter_header_footer.name);
 
-    EmailTemplates.renderEmailTemplate(view, language, {html: html}, function(err, html){
-        if (err) {
-            console.log(err);
-            return callback(err);
-        }
+    var html = EmailTemplates.renderEmailTemplate(view, language, {html: html});
+    html = EmailTemplates.embedMainCss(html);
 
-        var message = {
-            from: Config.email.from_name + ' <'+Config.email.from+'>',
-            to: '<' + receiver + '>',
-            replyTo: '<' + Config.email.reply_to + '>',
-            subject: subject,
-            html: html
-        };
+    var message = {
+        from: Config.email.from_name + ' <' + Config.email.from + '>',
+        to: '<' + receiver + '>',
+        replyTo: '<' + Config.email.reply_to + '>',
+        subject: subject,
+        html: html
+    };
 
-        transport.sendMail(message, callback);
-    });
+    transport.sendMail(message, callback);
+
 }
 exports.sendEmail = sendEmail;
 

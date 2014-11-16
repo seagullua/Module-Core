@@ -2,5 +2,8 @@
   "Core.Authorization.ConfirmEmail.already_confirmed": "This email was already confirmed",
   "Core.Authorization.ConfirmEmail.send_error": "Unable to send confirmation letter. Please try again later.",
   "Core.Authorization.ConfirmEmail.confirm_error": "Error occurred during email confirmation",
-  "Core.Authorization.ConfirmEmail.confirm_success": "Successful email confirmation!"
+  "Core.Authorization.ConfirmEmail.confirm_success": "Successful email confirmation!",
+  "Core.Authorization.ConfirmEmail.subject": "Your E-Mail confirmation",
+  "Core.Authorization.ConfirmEmail.confirm_email_description": "Please press the button to activate your e-mail",
+  "Core.Authorization.ConfirmEmail.confirm_email_button": "Confirm E-mail"
 }

@@ -1,7 +1,9 @@
 var View = include('System/Loaders/View');
 var path = require('path');
-var emailTemplates = require('email-templates');
-var i18n = require('i18n');
+var Render = include('Core/Templates/Render');
+var Locale = include('Core/Locale');
+var Less = include('System/Loaders/Less');
+var juice = require('juice');
 
 /**
  * Create function __ for given locale
@@ -10,10 +12,7 @@ var i18n = require('i18n');
  */
 function createTranslationFunction(language) {
     return function(phrase) {
-        return i18n.__({
-            phrase: phrase,
-            locale: language
-        });
+        return Locale.__(language, phrase);
     }
 }
 
@@ -24,44 +23,29 @@ var __cache = {};
  * @param view ME.view(...) object of the pass with template
  * @param language language code of the letter language: en, de, uk...
  * @param params JSON of params which are passed to the template
- * @param callback callback with err and html code of the letter
  */
-function renderEmailTemplate(view, language, params, callback) {
-    var path_to_folder = View.viewFileName(view);
+function renderEmailTemplate(view, language, params) {
+    params.ME = view.module;
+    params.__ = createTranslationFunction(language);
 
-    function renderFromCache() {
-        //Add system objects
-        params.ME = view.module;
-        params.__ = createTranslationFunction(language);
+    //var path_to_folder = View.viewFileName(view);
+    var html = Render.renderTemplateLocal({}, view, params);
+    return html;
+}
 
-        //Render from cache
-        var template = __cache[path_to_folder];
 
-        //Render template
-        template(path.basename(path_to_folder), params, function(err, html) {
-            if (err) {
-                console.log(err);
-                return callback(err);
-            } else {
-                callback(null, html);
-            }
-        });
-    }
 
-    //If not in cache yet add it
-    if(!(path_to_folder in __cache)) {
-        emailTemplates(path.dirname(path_to_folder), function(err, template) {
-            if (err) {
-                console.log(err);
-                return callback(err);
-            } else {
-                //add to cache
-                __cache[path_to_folder] = template;
-                renderFromCache();
-            }
-        });
-    }
+
+/**
+ * Make css styles inline
+ * @param html
+ */
+function embedMainCss(html) {
+    var css = Less.getMainCss();
+
+    return juice.inlineContent(html, css);
 }
 
 exports.renderEmailTemplate = renderEmailTemplate;
+exports.embedMainCss = embedMainCss;
 

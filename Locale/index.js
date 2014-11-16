@@ -17,3 +17,16 @@ exports.configureModules = function(app) {
 exports.addModuleLocale = function(module_name, translation_cache) {
     localeHolder.addModuleLocale(module_name, translation_cache);
 };
+
+/**
+ * Translation given to tag to language
+ * @param language code of the language
+ * @param tag tag to translate
+ * @private
+ */
+exports.__ = function(language, tag) {
+    return i18n.__({
+        phrase: tag,
+        locale: language
+    });
+};

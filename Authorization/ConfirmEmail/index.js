@@ -1,13 +1,17 @@
 var Urls = include('Core/Urls');
 var Authorization = include('Core/Authorization');
 var EMail = include('Core/EMail');
+var EMailTemplates = include('Core/EMail/Templates');
 var User = include('Core/User');
+var Locale = include('Core/Locale');
+var ME = include('Core/Authorization/ConfirmEmail');
+
 /**
  * Generates only code for user email confirmation
  * @param user full User object from database
  */
 function generateUserConfirmationCode(user) {
-    return Authorization.encodePassword(user.email+"_confirm_"+user._id);
+    return Authorization.encodePassword(user.email + "_confirm_" + user._id);
 }
 
 /**
@@ -30,20 +34,28 @@ function generateUserConfirmationLink(user) {
  * @param callback
  */
 function sendEmailConfirmationLetter(user, language, callback) {
-    if(!user.is_email_confirmed) {
+    if (!user.is_email_confirmed) {
+        var html = EMailTemplates.renderEmailTemplate(
+            ME.view('email_template/html'),
+            language,
+            {
+                confirmation: generateUserConfirmationLink(user)
+            });
+
         EMail.sendEmail(
-            "<b>Confirm Email: </b> "+generateUserConfirmationLink(user),
-            "Confirm email",
+            html,
+            Locale.__(language, "Core.Authorization.ConfirmEmail.subject"),
             user.email,
             language,
-            function(err){
-                if(err) {
+            function (err) {
+                if (err) {
                     console.error(err);
                     callback(new Error("Core.Authorization.ConfirmEmail.send_error"));
                 } else {
                     callback(null);
                 }
-        });
+            });
+
     } else {
         callback(new Error("Core.Authorization.ConfirmEmail.already_confirmed"));
     }
@@ -58,21 +70,21 @@ function confirmEmailPage(req, res) {
     var email = req.params.email;
     var confirmation = req.params.confirmation;
 
-    User.db.findUserByEmail(email,function(err,user){
-        if(err){
+    User.db.findUserByEmail(email, function (err, user) {
+        if (err) {
             showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
         } else {
-            if(!user) {
+            if (!user) {
                 //User not found
                 showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
             } else {
 
                 var user_code = generateUserConfirmationCode(user);
-                if(confirmation != user_code){
+                if (confirmation != user_code) {
                     showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
                 } else {
-                    User.db.setUserEmailConfirmed(user._id, function(err){
-                        if(err){
+                    User.db.setUserEmailConfirmed(user._id, function (err) {
+                        if (err) {
                             showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_error"));
                         } else {
                             showPopUp(req.__("Core.Authorization.ConfirmEmail.confirm_success"));
@@ -84,7 +96,7 @@ function confirmEmailPage(req, res) {
     });
 }
 
-exports.configureRouters = function(app) {
+exports.configureRouters = function (app) {
     app.get(Urls.urlUserEmailConfirmationLink(":email", ":confirmation"), confirmEmailPage);
 };
 
