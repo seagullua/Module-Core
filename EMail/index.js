@@ -7,9 +7,7 @@ var Config = include('Core/Config');
 var path = require('path');
 var transport = null;
 var HeaderFooterModule = include(Config.email.letter_header_footer.module);
-var Render = include('Core/Templates/Render');
-var View = include('System/Loaders/View');
-var emailTemplates = require('email-templates');
+var EmailTemplates = include('Core/EMail/Templates');
 
 exports.configureBeforeLaunch = function() {
     transport = nodemailer.createTransport("SMTP", {
@@ -26,33 +24,24 @@ exports.configureBeforeLaunch = function() {
 
 
 function sendEmail(html, subject, receiver, callback) {
-    var path_to_folder = View.viewFileName(HeaderFooterModule.view('email'));
-    emailTemplates(path_to_folder, function(err, template) {
+    var view = HeaderFooterModule.view('email/basic');
+
+    EmailTemplates.renderEmailTemplate(view, 'en', {html: html}, function(err, html){
         if (err) {
             console.log(err);
             return callback(err);
         }
 
-        template('basic', {html: html}, function(err, html) {
-            if (err) {
-                console.log(err);
-                return callback(err);
-            }
+        var message = {
+            from: Config.email.from_name + ' <'+Config.email.from+'>',
+            to: '<' + receiver + '>',
+            replyTo: '<' + Config.email.reply_to + '>',
+            subject: subject,
+            html: html
+        };
 
-            var message = {
-                from: Config.email.from_name + ' <'+Config.email.from+'>',
-                to: '<' + receiver + '>',
-                replyTo: '<' + Config.email.reply_to + '>',
-                subject: subject,
-                html: html
-            };
-
-            transport.sendMail(message, callback);
-        });
-
+        transport.sendMail(message, callback);
     });
-
-
 }
 exports.sendEmail = sendEmail;
 
