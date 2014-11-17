@@ -30,3 +30,15 @@ exports.__ = function(language, tag) {
         locale: language
     });
 };
+
+/**
+ * Reads the locale value from request object
+ * @param req
+ */
+exports.getLocaleFromRequest = function(req) {
+    var locale = Config.locale.default;
+    if(req && 'getLocale' in req) {
+        locale = req.getLocale();
+    }
+    return locale;
+};

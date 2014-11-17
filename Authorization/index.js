@@ -3,6 +3,7 @@ var passport = require('passport');
 var UserService = include('Core/User').db;
 var ConfirmEmail = include('Core/Authorization/ConfirmEmail');
 var Config = include('Core/Config');
+var Locale = include('Core/Locale');
 var crypto = require('crypto');
 
 function passwordHash(password) {
@@ -54,7 +55,9 @@ passport.deserializeUser(function (req, id, done) {
 
 function signUpUser(email, password_plain, callback) {
     var password = encodePassword(password_plain);
+
     var req = this;
+    var locale = Locale.getLocaleFromRequest(req);
 
     function onError(err) {
         console.error(err);
@@ -78,7 +81,7 @@ function signUpUser(email, password_plain, callback) {
                 callback(null, user);
 
                 //Send letter to confirm
-                ConfirmEmail.sendEmailConfirmationLetter(user, req.getLocale(), function(err){
+                ConfirmEmail.sendEmailConfirmationLetter(user, locale, function(err){
                     if(err) {
                         console.error("Letter not send",err);
                     } else {
