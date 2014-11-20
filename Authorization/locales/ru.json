@@ -1,0 +1,6 @@
+{
+  "auth.wrong_password": "Неправильный пароль. <br>Вы можете <a href='/restore-password' class='alert-link'>возобновить пароль.</a>.",
+  "auth.wrong_email": "Пользователь с таким email не существует",
+  "auth.internal_error": "Произошла ошибка. Пожалуйста попробуйте позже.",
+  "auth.user_exists": "Пользователь с таким адресом уже существует."
+}
