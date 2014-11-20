@@ -4,6 +4,7 @@
 var _ = require('underscore');
 var Config = include('Core/Config');
 
+var User = include('Core/User');
 var UserSchema = include('Core/User').db.User.schema;
 
 
@@ -14,6 +15,20 @@ var groups_list = Object.keys(groups);
 UserSchema.add({
     group: {type: String, default: Config.authorization.defaultGroup, enum: groups_list}
 });
+
+/**
+ * Set user group
+ * @param user_id
+ * @param group_id
+ * @param callback
+ */
+function setUserGroup(user_id, group_id, callback) {
+    User.db.User().findOneAndUpdate({
+        _id: user_id
+    }, {
+        group: group_id
+    }, callback);
+}
 
 function simplifyUserPermissions(group_id) {
     var g = groups[group_id];
@@ -73,3 +88,5 @@ exports.configureModules = function(app) {
         }
     };
 };
+
+exports.setUserGroup = setUserGroup;

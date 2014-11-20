@@ -30,7 +30,14 @@ function setUserEmailConfirmed(id, callback) {
     }, callback);
 }
 
+function updateUserProfile(user_id, profile, callback) {
+    ME.db.User().findOneAndUpdate({
+        _id: user_id
+    }, profile, callback);
+}
+
 exports.createUser = createUser;
 exports.findUserById = findUserById;
 exports.findUserByEmail = findUserByEmail;
 exports.setUserEmailConfirmed = setUserEmailConfirmed;
+exports.updateUserProfile = updateUserProfile;

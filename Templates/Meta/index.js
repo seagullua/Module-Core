@@ -1,14 +1,18 @@
 exports.configureModules = function(app) {
     app.request.page = null;
 
-    app.locals.pageMetaInit = function() {
-        if(!this.req.page) {
-            this.req.page = {
+    function initPageMeta(req) {
+        if(!req.page) {
+            req.page = {
                 title: '',
                 description: '',
                 keywords: ''
             };
         }
+    }
+
+    app.locals.pageMetaInit = function() {
+        initPageMeta(this.req);
     };
     app.locals.pageTitle = function(title) {
         this.pageMetaInit();
@@ -23,6 +27,11 @@ exports.configureModules = function(app) {
     app.locals.pageDescription = function(description) {
         this.pageMetaInit();
         this.req.page.description = description;
+    };
+
+    app.response.pageTitle = function(title) {
+        initPageMeta(this);
+        this.page.title = title;
     };
 
     app.locals.getPage = function() {
