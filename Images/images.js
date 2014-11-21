@@ -150,6 +150,16 @@ function saveImage(source_file, destination_file_name, sizes_in, callback) {
     });
 }
 
+/**
+ * Get the size of the image
+ * @param file
+ * @param callback
+ */
+function getImageSize(file, callback) {
+    gm(file).size(callback);
+}
+
 exports.getSmallImageName = getSmallImageName;
 exports.getSmallImagePath = getSmallImagePath;
 exports.saveImage = saveImage;
+exports.getImageSize = getImageSize;
