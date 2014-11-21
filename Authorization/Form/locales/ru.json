@@ -6,7 +6,6 @@
   "auth.sign_up.password_label": "Ваш пароль:",
   "auth.sign_up.password_placeholder": "Пароль",
   "auth.sign_up.button_sign_up": "Продолжить",
-  "auth.sign_up.page_title": "Ввойти или зарегистрироваться",
   "auth.sign_up.error_empty_email": "Необходимо ввести E-mail ",
   "auth.sign_up.sign_in_error": "Произошла ошибка во время авторизации. Попробуйте позже.",
   "auth.sign_up.error_empty_password": "Необходимо ввести пароль"
