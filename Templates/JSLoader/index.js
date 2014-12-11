@@ -7,12 +7,15 @@ exports.configureModules = function(app) {
      * Adds JS file to be included in the footer
      * @param file_url
      */
-    app.locals.js = function(file_url) {
+    app.locals.js = function(file_url, is_full) {
 
         if(!this.req.__js) {
             this.req.__js = [];
         }
-        this.req.__js.push(file_url);
+        this.req.__js.push({
+            file: file_url,
+            is_full: is_full
+        });
     };
 
     /**
@@ -25,12 +28,18 @@ exports.configureModules = function(app) {
         var included = {};
         if(__js) {
             for(var i=0; i<__js.length; ++i) {
-                var script = __js[i];
+                var info = __js[i];
+                var script = info.file;
 
                 if(!(script in included)) {
                     included[script] = true;
 
-                    var url = this.url_content + script;
+                    var url;
+                    if(!info.is_full) {
+                        url = this.url_content + script;
+                    } else {
+                        url = script;
+                    }
                     result += '<script src="'+url+'"></script>\n';
                 }
             }
