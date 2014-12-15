@@ -52,6 +52,13 @@ passport.deserializeUser(function (req, id, done) {
     });
 });
 
+function changeUserPassword(user_id, password_plain, callback) {
+    var password = encodePassword(password_plain);
+
+    UserService.updateUserProfile(user_id, {
+        password: password
+    }, callback);
+}
 
 function signUpUser(email, password_plain, callback) {
     var password = encodePassword(password_plain);
@@ -131,6 +138,7 @@ function signInUser(email, password, callback) {
 
 exports.signUpUser = signUpUser;
 exports.encodePassword = encodePassword;
+exports.changeUserPassword = changeUserPassword;
 
 exports.configureModules = function(app) {
     app.request.signInUser = signInUser;

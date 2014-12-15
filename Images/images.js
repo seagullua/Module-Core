@@ -1,6 +1,7 @@
 var path = require('path');
 var fse = require('fs-extra');
 var gm = require('gm').subClass({ imageMagick: true });
+var SUPPORTED_FORMATS = [".jpg", ".gif", ".png", ".jpeg"];
 
 /**
  * Returns the name of scaled image
@@ -150,6 +151,36 @@ function saveImage(source_file, destination_file_name, sizes_in, callback) {
     });
 }
 
+/**
+ * Get the size of the image
+ * @param file
+ * @param callback
+ */
+function getImageSize(file, callback) {
+    gm(file).size(callback);
+}
+
+function createImageThumbnail(source_file, destination_file_name, thumbnail_size, callback) {
+    var output_dir = path.dirname(destination_file_name);
+    fse.ensureDir(output_dir, function(err){
+        if(err) {
+            return callback(err);
+        }
+
+        //Get file size
+        gm(source_file).size(function(err, original_size){
+            if(err) {
+                return callback(err);
+            }
+
+            createOneSmallImage(source_file, destination_file_name, original_size, thumbnail_size, callback)
+        });
+    });
+}
+
 exports.getSmallImageName = getSmallImageName;
 exports.getSmallImagePath = getSmallImagePath;
 exports.saveImage = saveImage;
+exports.getImageSize = getImageSize;
+exports.createImageThumbnail = createImageThumbnail;
+exports.SUPPORTED_FORMATS = SUPPORTED_FORMATS;

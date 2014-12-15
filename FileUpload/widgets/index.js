@@ -6,13 +6,14 @@ var ME = include('Core/FileUpload');
  * @param file_formats
  * @returns {String}
  */
-function widgetShowFileUpload(field_name, button_title, file_formats) {
+function widgetShowFileUpload(field_name, button_title, file_formats, mimeTypes) {
     return {
         view: ME.view('file_upload_field'),
         options: {
             chooseButton: button_title,
             fieldName: field_name,
             fileFormats: file_formats.join(', '),
+            mimeTypes: mimeTypes,
             jsFile: ME.js('filepicker.js')
         }
     };
