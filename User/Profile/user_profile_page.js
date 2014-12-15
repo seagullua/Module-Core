@@ -1,7 +1,8 @@
 var Config = include('Core/Config');
 var path = require('path');
 var images = include('Core/Images');
-//var userService = require('./../database/user.js');
+var ME = include('Core/User/Profile');
+//var userService = require('./db/user.js');
 
 
 function postUserProfile(req,res){
@@ -24,17 +25,20 @@ function postUserProfile(req,res){
     });
 }
 function getUserProfile(req, res,error_message) {
-    if(req.grantPermissions(['edit_book'])) {
-        userService.findUserById(req.user.id, function(err) {
-            if (err) {
-                return res.showError(500);
-            }
-            res.render('userProfile/user_profile',{
-                fileFormats: Config.book.coverFormats,
-                message: error_message
-            });
-        });
-    }
+//    if(req.grantPermissions(['edit_book'])) {
+//        userService.findUserById(req.user.id, function(err) {
+//            if (err) {
+//                return res.showError(500);
+//            }
+//            res.render('userProfile/user_profile',{
+//                fileFormats: Config.book.coverFormats,
+//                message: error_message
+//            });
+//        });
+//    }
+
+    res.render(ME.view('user_profile'), {
+    });
 
 }
 
