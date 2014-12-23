@@ -1,4 +1,8 @@
 {
+    "user_profile.name": "Name:",
+    "user_profile.surname": "Surname:",
+    "user_profile.email": "e-mail:",
+
     "user_profile.button.save_changes": "Save Changes",
     "user_profile.button.change_avatar": "Change avatar",
     "user_profile.confirmed": "Confirmed",

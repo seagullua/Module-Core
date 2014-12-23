@@ -1,6 +1,7 @@
 var Config = include('Core/Config');
 var path = require('path');
 var images = include('Core/Images');
+var Auth = include('Core/Authorization');
 var ME = include('Core/User/Profile');
 var User = include('Core/User').db;
 var Locale = include('Core/Locale');
@@ -13,6 +14,10 @@ function checkPermissions(req,res,next) {
 }
 
 function postUserProfile(req,res){
+    if (req.user.email != req.body.email) {
+        req.body.is_email_confirmed = false;
+    }
+
     User.updateUserProfile(req.user._id, req.body, function(err) {
         if (err) {
             return res.showError(500);
@@ -43,22 +48,18 @@ function resendConfirmation(req, res) {
 }
 
 function changePassword(req, res) {
-    var newPassword = req.body.new_password_1;
+    var newPassword = req.body.password;
 
-    userService.changePassword(req.user._id, newPassword, function(err) {
+    Auth.changeUserPassword(req.user._id, newPassword, function(err) {
         if (err) {
-            return res.showError(500);
+            console.error("Some problem with password change");
+        } else {
+            console.log("Password changed!");
+            res.redirect('/profile/');
         }
-        res.redirect('/profile/');
-    });
+    })
 }
 
-function checkOldPassword(req, res) {
-    console.log("In check old");
-    res.send(req.user.password == req.body.old_password);
-}
-
-exports.checkOldPassword = checkOldPassword;
 exports.changePassword = changePassword;
 exports.resendConfirmation = resendConfirmation;
 exports.getUserProfile = getUserProfile;

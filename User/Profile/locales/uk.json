@@ -1,4 +1,8 @@
 {
+    "user_profile.name": "Ім'я:",
+    "user_profile.surname": "Прізвище:",
+    "user_profile.email": "e-mail:",
+
     "user_profile.confirmed": "Підтверджено",
     "user_profile.saved": "Збережено!",
     "user_profile.help_name": "Введіть своє ім’я",
