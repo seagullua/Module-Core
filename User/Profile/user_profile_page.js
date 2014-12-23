@@ -2,53 +2,44 @@ var Config = include('Core/Config');
 var path = require('path');
 var images = include('Core/Images');
 var ME = include('Core/User/Profile');
-//var userService = require('./db/user.js');
+var User = include('Core/User').db;
+var Locale = include('Core/Locale');
+var ConfirmEmail = include('Core/Authorization/ConfirmEmail');
 
+function checkPermissions(req,res,next) {
+    if(req.grantPermissions(['user'])) {
+        next();
+    }
+}
 
 function postUserProfile(req,res){
-    userService.changeUserName(req.user.id,req.body.name,req.body.surname,function(err){
+    User.updateUserProfile(req.user._id, req.body, function(err) {
         if (err) {
             return res.showError(500);
         }
-        if(req.body.email){
-            userService.changeUserEmail(req.user.id,req.body.email,function(err){
-                if (err) {
-                    return res.showError(500);
-                }
-                console.log('user updated');
-                res.send(200,"email_changed");
-            })  ;
-        }else{
-            console.log('user updated');
-            res.send(200);
-        }
+        res.redirect('/profile/');
     });
 }
-function getUserProfile(req, res,error_message) {
-//    if(req.grantPermissions(['edit_book'])) {
-//        userService.findUserById(req.user.id, function(err) {
-//            if (err) {
-//                return res.showError(500);
-//            }
-//            res.render('userProfile/user_profile',{
-//                fileFormats: Config.book.coverFormats,
-//                message: error_message
-//            });
-//        });
-//    }
-
-    res.render(ME.view('user_profile'), {
-    });
-
+function getUserProfile(req, res) {
+    res.render(ME.view('user_profile'),
+        {
+            userInfo: req.user
+        }
+    );
 }
 
 function resendConfirmation(req, res) {
-    if (req.user) {
-        req.smtp.sendEmailConfirmationLink(req.user.email);
-        res.redirect('/profile/?resent=true');
-    }
-    else
-        res.showError(404);
+    var locale = Locale.getLocaleFromRequest(req);
+
+    ConfirmEmail.sendEmailConfirmationLetter(req.user, locale, function(err){
+        if(err) {
+            console.error("Letter not send",err);
+        } else {
+            console.log("Confirmation sent");
+            res.redirect('/profile/');
+        }
+
+    });
 }
 
 function changePassword(req, res) {
@@ -72,3 +63,4 @@ exports.changePassword = changePassword;
 exports.resendConfirmation = resendConfirmation;
 exports.getUserProfile = getUserProfile;
 exports.postUserProfile = postUserProfile;
+exports.checkPermissions = checkPermissions;

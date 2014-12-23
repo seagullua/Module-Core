@@ -1,5 +1,5 @@
 var ME = include('Core/User');
-//var User = ME.db.User;
+var User = ME.db.User;
 
 
 function createUser(email, password, callback) {
