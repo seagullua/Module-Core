@@ -1,0 +1,17 @@
+<% var bread = req.breadcrumbs();
+    if(bread && bread.length > 0) { %>
+        <ol class="breadcrumb">
+            <% for(var i=0; i<bread.length; ++i) {
+                var b = bread[i];
+                var is_last = (i+1) == bread.length;
+
+            %>
+                <%if (is_last) { %>
+                    <li class="active"><%= b.name %></li>
+                <%} else {%>
+                    <li><a href="<%= b.url %>"><%= b.name %></a></li>
+                <%}%>
+
+            <% } %>
+        </ol>
+<% } %>
