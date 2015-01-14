@@ -15,6 +15,9 @@
             <span class="help-block help-text"><%= __(field.hint_text) %></span>
         <% } %>
 
+        <span class="validator-error alert alert-danger help-block not-number" style="display: none;">
+            <%= __('form.validator.not_number') %></span>
+
         <span class="validator-error alert alert-danger help-block not-even" style="display: none;">
             <%= __('form.validator.not_even') %></span>
 

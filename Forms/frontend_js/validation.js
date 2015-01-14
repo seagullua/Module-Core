@@ -91,30 +91,53 @@ function FormValidator(options) {
         var parent = $('#'+field.id+'-parent');
         var input = $('#'+field.id);
 
-
         function revalidate(scroll) {
             parent.find('.validator-error').hide();
+            parent.find('.validator-error').removeClass('activeError');
             var valid = true;
 
             var error;
-            if (field.id == "printedPages") {
+
+            if (field.id == "numOfPrintedPages") {
+                // check if it is a number really
+                for (var i = 0; i < input.val().length ; i++) {
+                    if ((input.val().charAt(i) < '0') || (input.val().charAt(i) > '9')) {
+                        valid = false;
+                        error = parent.find('.not-number');
+                        //parent.find('.not-number').removeClass('activeError');
+                        error.show();
+                        error.addClass('activeError');
+                    }
+                }
                 if (input.val() < 0) {
                     valid = false;
                     error = parent.find('.negative-number');
                     error.show();
+                    error.addClass('activeError');
                 }
                 if (input.val() % 2 !== 0) {
                     valid = false;
                     error = parent.find('.not-even');
                     error.show();
+                    error.addClass('activeError');
                 }
             }
 
             if (field.id == "numberInSeries") {
+                // check if it is a number really
+                for (var i = 0; i < input.val().length ; i++) {
+                    if ((input.val().charAt(i) < '0') || (input.val().charAt(i) > '9')) {
+                        valid = false;
+                        error = parent.find('.not-number');
+                        error.show();
+                        error.addClass('activeError');
+                    }
+                }
                 if (input.val() < 0 || input.val() > 50) {
                     valid = false;
                     error = parent.find('.bad-between-number');
                     error.show();
+                    error.addClass('activeError');
                 }
             }
 
@@ -135,6 +158,7 @@ function FormValidator(options) {
 
 
         function revalidate(scroll) {
+            parent.find('.validator-error').removeClass('activeError');
             parent.find('.validator-error').hide();
             var valid = true;
 
@@ -148,6 +172,7 @@ function FormValidator(options) {
                     valid = false;
                     error = parent.find('.many-words');
                     error.show();
+                    error.addClass('activeError');
                 }
             }
 
@@ -155,6 +180,7 @@ function FormValidator(options) {
                 valid = false;
                 error = parent.find('.too-long');
                 error.show();
+                error.addClass('activeError');
             }
 
             if(!field.optional) {
@@ -162,6 +188,7 @@ function FormValidator(options) {
                     valid = false;
                     error = parent.find('.error-empty');
                     error.show();
+                    error.addClass('activeError');
                 }
             }
 
@@ -231,7 +258,11 @@ $(function(){
                     return true;
                 } else {
                     event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $('.activeError').offset().top-150
+                    }, 500);
                     return false;
+
                 }
             });
         }
@@ -291,6 +322,7 @@ $(function(){
 
     // Add button click handler
     $descriptionForm.on('click', '.add-contributor', function() {
+        //console.log($(this));
         var $template = $('#optionTemplate'),
             $clone    = $template
                 .clone()
@@ -384,8 +416,8 @@ $(function(){
         });
     }
 
-    hideSecondCategory();
-    displayControls();
+    //hideSecondCategory();
+    //displayControls();
     hideNoCategory();
 
 
