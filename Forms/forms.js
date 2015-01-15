@@ -110,6 +110,7 @@ var validators = {
     "list": notImplemented,
     "list-checkbox": notImplemented,
     "list-contributors": validateContributors,
+    "list-contributorsEnglish": validateContributors,
     "list-twoItem": notImplemented,
     "number": notImplemented,
     "text": notImplemented

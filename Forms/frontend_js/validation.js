@@ -322,13 +322,25 @@ $(function(){
 
     // Add button click handler
     $descriptionForm.on('click', '.add-contributor', function() {
-        //console.log($(this));
-        var $template = $('#optionTemplate'),
-            $clone    = $template
-                .clone()
-                .removeClass('hide')
-                .removeAttr('id')
-                .insertBefore($template);
+        console.log($(this).attr("data-field"));
+        //console.log($('.optionTemplate').find($(this).attr("data-field")));
+        if ($(this).attr("data-field") == "contributors") {
+            var $template = $('#optionTemplate'),
+                $clone    = $template
+                    .clone()
+                    .removeClass('hide')
+                    .removeAttr('id')
+                    .insertBefore($template);
+        }
+        else if ($(this).attr("data-field") == "contributorsEnglish") {
+            var $template = $('#optionTemplateEnglish'),
+                $clone    = $template
+                    .clone()
+                    .removeClass('hide')
+                    .removeAttr('id')
+                    .insertBefore($template);
+        }
+
     })
         // Remove button click handler
         .on('click', '.remove-contributor', function() {
