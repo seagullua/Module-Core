@@ -32,7 +32,7 @@ function generateForm(data, form_format_json, show_validation_errors) {
     for(var i=0; i<form_format_json.length; ++i) {
         var field = form_format_json[i];
 
-        var value;
+        var value = null;
         if(data[field.id] !== undefined) {
             value = data[field.id];
         }
