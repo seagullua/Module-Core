@@ -5,7 +5,7 @@
     </label>
 
     <div class="col-sm-10 contributors">
-        <% if (req.book.contributorsEnglish.length == 0) {%>
+        <% if (req.book.autopub_description.contributorsEnglish.length == 0) {%>
         <div class="row contributor">
             <div class="col-sm-3">
                 <select name="<%= field.id %>[type][]" class="form-control">
@@ -33,12 +33,12 @@
         </div>
         <%} else {%>
 
-            <% for (var contributorCounter = 0; contributorCounter < req.book.contributorsEnglish.length; ++contributorCounter) { %>
+            <% for (var contributorCounter = 0; contributorCounter < req.book.autopub_description.contributorsEnglish.length; ++contributorCounter) { %>
             <div class="row contributor">
                 <div class="col-sm-3">
                     <select name="<%= field.id %>[type][]" class="form-control">
                         <% for (var i = 0; i < field.items.length; ++i) { %>
-                        <option value="<%= field.items[i].id %>" <%= field.items[i].id == req.book.contributorsEnglish[contributorCounter].type ? 'selected' : '' %>>
+                        <option value="<%= field.items[i].id %>" <%= field.items[i].id == req.book.autopub_description.contributorsEnglish[contributorCounter].type ? 'selected' : '' %>>
                             <%= __('book_description.contributor.' + field.items[i].name) %>
                         </option>
                         <% } %>
@@ -47,11 +47,11 @@
                 </div>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" placeholder="<%= __('book_description.placeholder.name') %>"
-                           name="<%= field.id %>[name][]" value="<%= req.book.contributorsEnglish[contributorCounter].name %>"/>
+                           name="<%= field.id %>[name][]" value="<%= req.book.autopub_description.contributorsEnglish[contributorCounter].name %>"/>
                 </div>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" placeholder="<%= __('book_description.placeholder.surname') %>"
-                           name="<%= field.id %>[surname][]" value="<%= req.book.contributorsEnglish[contributorCounter].surname %>"/>
+                           name="<%= field.id %>[surname][]" value="<%= req.book.autopub_description.contributorsEnglish[contributorCounter].surname %>"/>
                 </div>
                 <div class="col-sm-3 contributor-controls">
                     <% if (contributorCounter != 0) {%>
