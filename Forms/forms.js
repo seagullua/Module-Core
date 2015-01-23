@@ -103,6 +103,33 @@ function validateContributors(field, body) {
     return contributors;
 }
 
+function validatePrice(field, body) {
+    var total = '';
+
+    if (typeof body[field.id] != 'undefined') {
+        var splitted = body[field.id].split(".", 2);
+
+        if (typeof splitted[1] != 'undefined') {
+            if (splitted[1].length === 1) {
+                splitted[1] = splitted[1] + '0';
+            }
+        }
+
+        var dollars = parseInt(splitted[0]);
+        var cents = parseInt(splitted[1]);
+
+
+        // if there were no cents in string
+        if (isNaN(cents)) {
+            cents = 0;
+        }
+
+        total = dollars*100 + cents;
+    }
+
+    return total;
+}
+
 //Each validator should return validated value or null if the validation failed
 var validators = {
     "description": notImplemented,
@@ -113,6 +140,8 @@ var validators = {
     "list-contributorsEnglish": validateContributors,
     "list-twoItem": notImplemented,
     "number": notImplemented,
+    "price": validatePrice,
+    "price-with-checkbox": validatePrice,
     "text": notImplemented
 };
 

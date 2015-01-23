@@ -152,6 +152,37 @@ function FormValidator(options) {
         });
     }
 
+    function priceValidator(field) {
+        var parent = $('#'+field.id+'-parent');
+        var input = $('#'+field.id);
+
+        function revalidate(scroll) {
+            parent.find('.validator-error').hide();
+            parent.find('.validator-error').removeClass('activeError');
+
+            var valid = true;
+            var error;
+
+            if (! input.val().match(/^([1-9]+[0-9]?(\.\d{1,2})?)$|(0(\.\d{1,2})?)$/)) {
+                valid = false;
+                error = parent.find('.bad-price');
+                error.show();
+                error.addClass('activeError');
+            };
+
+            return valid;
+        }
+
+        input.on('input', revalidate);
+
+        _on_save.push(function(){
+            if (parent.find('.disable-price').attr('value') === 'true') {
+                return true;
+            }
+            return revalidate(true);
+        });
+    }
+
     function textFieldValidator(field) {
         var parent = $('#'+field.id+'-parent');
         var input = $('#'+field.id);
@@ -207,6 +238,8 @@ function FormValidator(options) {
         text: textFieldValidator,
         description: textFieldValidator,
         number: numValidator,
+        price: priceValidator,
+        "price-with-checkbox": priceValidator,
         isbn: isbnValidator
     };
 

@@ -1,0 +1,35 @@
+<div class="form-group">
+    <% console.log("no ua price", req.book.autopub_price.no_ua_price);%>
+    <label for="<%= field.id %>" class="col-sm-2 control-label <%= field.optional?"optional":""%>">
+        <%= __(field.title) %>
+    </label>
+    <div class="col-sm-4" id="<%= field.id %>-parent">
+        <div class = "input-group">
+            <input type="text" class="form-control price-to-disable" id="<%= field.id %>" name="<%= field.id %>" <% if (req.book.autopub_price.no_ua_price == true) {%> disabled="true" <%}%>
+                    <% if (field.placeholder) {%>
+                   placeholder="<%= __(field.placeholder) %>"
+                    <% } %>
+                    <% if(field.value) { %>
+                   value="<%= (field.value/100).toFixed(2) %>"
+                    <%}%>
+                    />
+            <span class="input-group-addon"><%= field.currency%></span>
+        </div>
+        <% if(field.hint_text) { %>
+        <span class="help-block help-text"><%= __(field.hint_text) %></span>
+        <% } %>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" class = "disable-price" name="<%= field.id_checkbox %>" <% if (req.book.autopub_price.no_ua_price == true) {%> value="true" checked = "checked" <%} else {%> value = "false" <%}%>><%= __(field.disable_checkbox_text) %>
+            </label>
+        </div>
+
+        <span class="validator-error alert alert-danger help-block bad-price" style="display: none;">
+            <%= __('form.validator.bad_price') %></span>
+
+        <input type="hidden" name="no_ua_price" value="">
+    </div>
+    <% js(ME.js('disable_price.js')) %>
+</div>
+
