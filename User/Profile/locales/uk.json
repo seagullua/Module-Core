@@ -2,9 +2,13 @@
     "user_profile.name": "Ім'я:",
     "user_profile.surname": "Прізвище:",
     "user_profile.email": "e-mail:",
+    "user_profile.phone": "Номер телефону:",
+    "user_profile.publishing": "Видавництво:",
 
     "user_profile.confirmed": "Підтверджено",
     "user_profile.saved": "Збережено!",
+    "user_profile.help_phone": "Введіть контактний телефон",
+    "user_profile.help_publishing": "Введіть назву видавництва",
     "user_profile.help_name": "Введіть своє ім’я",
     "user_profile.button.help_surname": "Введіть своє прізвище",
     "user_profile.confirmed.information": "Ви не підтвердили свою електронну пошту. Будь ласка, пройдіть по посиланню, яке отримали при реєстрації. Якщо ви загубили електронного листа, ви можете",
