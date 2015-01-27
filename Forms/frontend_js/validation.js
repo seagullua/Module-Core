@@ -163,7 +163,7 @@ function FormValidator(options) {
             var valid = true;
             var error;
 
-            if (! input.val().match(/^([1-9]+[0-9]?(\.\d{1,2})?)$|(0(\.\d{1,2})?)$/)) {
+            if (! input.val().match(/^([1-9]+[0-9]*(\.\d{1,2})?)$|(0(\.\d{1,2})?)$/)) {
                 valid = false;
                 error = parent.find('.bad-price');
                 error.show();
