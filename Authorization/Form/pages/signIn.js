@@ -1,7 +1,7 @@
 var ME = include('Core/Authorization/Form');
-
+var showFormMethod = require('../common/showForm');
 function showForm(req, res, message) {
-    ME.common.showForm(req, res, 'sign_in', message);
+    showFormMethod(req, res, 'sign_in', message);
 }
 
 exports.post = function(req, res) {

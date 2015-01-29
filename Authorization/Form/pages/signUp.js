@@ -1,7 +1,9 @@
 var ME = include('Core/Authorization/Form');
 var signIn = require('./signIn');
+var showFormMethod = require('../common/showForm');
+
 function showForm(req, res, message) {
-    ME.common.showForm(req, res, 'sign_up', message);
+    showFormMethod(req, res, 'sign_up', message);
 }
 var Config = include('Core/Config');
 
