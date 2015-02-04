@@ -18,12 +18,19 @@ function postUserProfile(req,res){
         req.body.is_email_confirmed = false;
     }
 
-    User.updateUserProfile(req.user._id, req.body, function(err) {
-        if (err) {
-            return res.showError(500);
-        }
+    if(!req.body.email || req.body.email.trim() == "") {
+        req.flash("danger", res.__("user_profile.msg.save.error_email"));
         res.redirect('/profile/');
-    });
+    }
+    else {
+        User.updateUserProfile(req.user._id, req.body, function(err) {
+            if (err) {
+                return res.showError(500);
+            }
+            req.flash("success", res.__("user_profile.msg.save.success"));
+            res.redirect('/profile/');
+        });
+    }
 }
 function getUserProfile(req, res) {
     res.render(ME.view('user_profile'),

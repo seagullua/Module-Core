@@ -23,5 +23,8 @@
 
     "sing_up.email_confirmation_popup.email_confirmation_text": "Email confirmation",
     "sing_up.email_confirmation_popup.resent": "Email confirmation link was successfully resent",
-    "sing_up.email_confirmation_popup.successful_email_confirmation_text": "Your email is successfully confirmed"
+    "sing_up.email_confirmation_popup.successful_email_confirmation_text": "Your email is successfully confirmed",
+
+    "user_profile.msg.save.error_email": "User profile wasn't saved. Please, enter valid e-mail.",
+    "user_profile.msg.save.success": "User profile was successfully saved!"
 }
