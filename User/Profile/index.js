@@ -2,6 +2,7 @@ var Urls = include('Core/Urls');
 var userProfilePage = require('./user_profile_page');
 
 exports.configureRouters = function(app) {
+    app.all(Urls.urlMyProfile(), userProfilePage.breadcrumps);
     app.all(Urls.urlMyProfile('/*'),userProfilePage.checkPermissions);
 
     app.get(Urls.urlMyProfile('/'),userProfilePage.getUserProfile);

@@ -6,6 +6,7 @@ var ME = include('Core/User/Profile');
 var User = include('Core/User').db;
 var Locale = include('Core/Locale');
 var ConfirmEmail = include('Core/Authorization/ConfirmEmail');
+var Urls = include('Core/Urls');
 
 function checkPermissions(req,res,next) {
     if(req.grantPermissions(['user'])) {
@@ -67,8 +68,18 @@ function changePassword(req, res) {
     })
 }
 
+function breadcrumps(req, res, next) {
+    req.breadcrumbs({
+        url: Urls.urlMyProfile(),
+        name: res.__('top_panel.avatar.my_profile')
+    });
+    next();
+}
+
+
 exports.changePassword = changePassword;
 exports.resendConfirmation = resendConfirmation;
 exports.getUserProfile = getUserProfile;
 exports.postUserProfile = postUserProfile;
 exports.checkPermissions = checkPermissions;
+exports.breadcrumps = breadcrumps;
