@@ -4,7 +4,7 @@
         <%= __(field.title) %>
     </label>
 
-    <div class="col-sm-10 contributors">
+    <div class="col-sm-10 contributors" id="<%= field.id %>-parent">
         <% if (req.book.autopub_description.contributorsEnglish.length == 0) {%>
         <div class="row contributor">
             <div class="col-sm-3">
@@ -94,5 +94,7 @@
                 </button>
             </div>
         </div>
+        <span class="validator-error alert alert-danger help-block empty-contributors" style="display: none;">
+            <%= __('form.validator.empty_contributors') %></span>
     </div>
 </div>
