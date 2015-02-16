@@ -11,7 +11,7 @@ var EmailTemplates = include('Core/EMail/Templates');
 
 exports.configureBeforeLaunch = function () {
     transport = nodemailer.createTransport("SMTP", {
-        service: 'gmail',
+        service: Config.email.smtp.service,
         auth: {
             user: Config.email.smtp.login,
             pass: Config.email.smtp.password
