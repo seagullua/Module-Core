@@ -87,6 +87,43 @@ function FormValidator(options) {
 
     }
 
+    function contrubutorsValidator(field) {
+        var parent = $('#'+field.id+'-parent');
+
+        function revalidate(scroll) {
+            parent.find('.validator-error').hide();
+            var valid = false;
+            var error;
+
+            var contributor_names = document.getElementsByName(field.id+"[name][]");
+            var contributor_surnames = document.getElementsByName(field.id+"[surname][]");
+
+            for (var i = 0; i < contributor_names.length; ++i) {
+                if (contributor_names[i].value != "") {
+                    valid = true;
+                }
+            }
+
+            for (var i = 0; i < contributor_surnames.length; ++i) {
+                if (contributor_surnames[i].value != "") {
+                    valid = true;
+                }
+            }
+
+            if (valid === false) {
+                error = parent.find('.empty-contributors');
+                error.show();
+                error.addClass('activeError');
+            }
+
+            return valid;
+        }
+
+        _on_save.push(function(){
+            return revalidate(true);
+        });
+    }
+
     function numValidator(field) {
         var parent = $('#'+field.id+'-parent');
         var input = $('#'+field.id);
@@ -240,7 +277,9 @@ function FormValidator(options) {
         number: numValidator,
         price: priceValidator,
         "price-with-checkbox": priceValidator,
-        isbn: isbnValidator
+        isbn: isbnValidator,
+        "list-contributors": contrubutorsValidator,
+        "list-contributorsEnglish": contrubutorsValidator
     };
 
     /**

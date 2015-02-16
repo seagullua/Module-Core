@@ -1,0 +1,9 @@
+{
+  "Core.Authorization.ConfirmEmail.already_confirmed": "Этот адрес уже подтвержден",
+  "Core.Authorization.ConfirmEmail.send_error": "Не удалось отправить письмо, пожалуйста попробуйте позже",
+  "Core.Authorization.ConfirmEmail.confirm_error": "Ошибка при подтверждение адреса. Попробуйте позже",
+  "Core.Authorization.ConfirmEmail.confirm_success": "Электронный адрес успешно подтвержден!",
+  "Core.Authorization.ConfirmEmail.subject": "Подтверждение электронной почты",
+  "Core.Authorization.ConfirmEmail.confirm_email_description": "Пожалуйста нажмите на кнопку для того, чтобы активировать ваш адрес электронной почты.",
+  "Core.Authorization.ConfirmEmail.confirm_email_button": "Подтвердить почту"
+}
