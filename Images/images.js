@@ -56,10 +56,7 @@ function createOneSmallImage(source_file, destination_file_name, original_size, 
         fse.copy(source_file, destination_file_name, callbackFunction);
     } else {
         //Scale the image
-        gm(source_file)
-            .resize(target_max_size, target_max_size)
-            .quality(90)
-            .write(destination_file_name, callbackFunction);
+        gm(source_file).thumb(0, target_max_size, destination_file_name, 70, callbackFunction);
     }
 }
 
