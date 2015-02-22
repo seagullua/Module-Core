@@ -135,17 +135,17 @@ function FormValidator(options) {
 
             var error;
 
-            if (field.id == "numOfPrintedPages") {
-                // check if it is a number really
-                for (var i = 0; i < input.val().length ; i++) {
-                    if ((input.val().charAt(i) < '0') || (input.val().charAt(i) > '9')) {
-                        valid = false;
-                        error = parent.find('.not-number');
-                        //parent.find('.not-number').removeClass('activeError');
-                        error.show();
-                        error.addClass('activeError');
-                    }
+            // check if it is a number really
+            for (var i = 0; i < input.val().length ; i++) {
+                if ((input.val().charAt(i) < '0') || (input.val().charAt(i) > '9')) {
+                    valid = false;
+                    error = parent.find('.not-number');
+                    error.show();
+                    error.addClass('activeError');
                 }
+            }
+
+            if (field.id == "numOfPrintedPages") {
                 if (input.val() < 0) {
                     valid = false;
                     error = parent.find('.negative-number');
@@ -161,18 +161,18 @@ function FormValidator(options) {
             }
 
             if (field.id == "numberInSeries") {
-                // check if it is a number really
-                for (var i = 0; i < input.val().length ; i++) {
-                    if ((input.val().charAt(i) < '0') || (input.val().charAt(i) > '9')) {
-                        valid = false;
-                        error = parent.find('.not-number');
-                        error.show();
-                        error.addClass('activeError');
-                    }
-                }
                 if (input.val() < 0 || input.val() > 50) {
                     valid = false;
                     error = parent.find('.bad-between-number');
+                    error.show();
+                    error.addClass('activeError');
+                }
+            }
+
+            if(!field.optional) {
+                if(input.val().length === 0) {
+                    valid = false;
+                    error = parent.find('.error-empty');
                     error.show();
                     error.addClass('activeError');
                 }
