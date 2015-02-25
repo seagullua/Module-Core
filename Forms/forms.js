@@ -50,8 +50,7 @@ function generateForm(data, form_format_json, show_validation_errors) {
             is_valid = validateFieldValue(value, field);
         }
 
-        if(value !== null)
-            formData.push(drawField(field, !is_valid));
+        formData.push(drawField(field, !is_valid));
     }
     return formData;
 }
