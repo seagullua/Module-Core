@@ -1,6 +1,73 @@
 function FormValidator(options) {
     var _on_save = [];
 
+    function passwordsValidator(field){
+        var parent = $('#'+field.id+'-parent');
+        var password = $('#'+field.id);
+        var confirm_password = $('#'+field.id+'-confirm_password');
+
+        function revalidate(scroll) {
+            parent.find('.validator-error').hide();
+            var valid = true;
+
+            if (!isValidPassowrd(field)) {
+                valid = false;
+                var error = parent.find('.bad-passwords');
+                error.show();
+                confirm_password.val("");
+            }
+            return valid;
+        }
+
+        function revalidateText(scroll) {
+            parent.find('.validator-error').removeClass('activeError');
+            parent.find('.validator-error').hide();
+            var valid = true;
+
+
+            var error;
+            // checking that there is no more than 5 words here!
+            if (field.id-password == "keyWords") {
+                var words = $.map(input.val().split(/[\s,]+/), function (el) { return el.trim(); } );
+                if (words.length > 5) {
+                    valid = false;
+                    error = parent.find('.many-words');
+                    error.show();
+                    error.addClass('activeError');
+                }
+            }
+
+            if (password.val().length >= field.max) {
+                valid = false;
+                error = password.find('.too-long');
+                error.show();
+                error.addClass('activeError');
+            }
+
+            if(!password.optional) {
+                if(password.val().length === 0) {
+                    valid = false;
+                    error = parent.find('.error-empty');
+                    error.show();
+                    error.addClass('activeError');
+                }
+            }
+
+            //console.log("Valid: ", valid);
+            return valid;
+        }
+
+        function isValidPassowrd(field){
+            return password.val() == confirm_password.val();
+        }
+        password.on('input', revalidateText);
+
+        _on_save.push(function(){
+            return revalidate(true);
+        });
+    }
+
+
     function isbnValidator(field) {
         var parent = $('#'+field.id+'-parent');
         var input = $('#'+field.id);
@@ -269,7 +336,7 @@ function FormValidator(options) {
         _on_save.push(function(){
             return revalidate(true);
         });
-    }
+    };
 
     var _validators = {
         text: textFieldValidator,
@@ -279,7 +346,8 @@ function FormValidator(options) {
         "price-with-checkbox": priceValidator,
         isbn: isbnValidator,
         "list-contributors": contrubutorsValidator,
-        "list-contributorsEnglish": contrubutorsValidator
+        "list-contributorsEnglish": contrubutorsValidator,
+        "password-with-confirm": passwordsValidator
     };
 
     /**
@@ -376,7 +444,7 @@ $(function(){
             changes_saved = true;
             window.location = active_link.attr("href");
         });
-       console.log($descriptionForm.serialize());
+        console.log($descriptionForm.serialize());
         //$('#to-submit').click();
         $('#before-unload-warning').modal('hide');
 
@@ -504,14 +572,12 @@ $(function(){
     //displayControls();
     hideNoCategory();
 
-
     function getByData ($element, data, value) {
         return $element.filter(function (){
             return $(this).data(data) == value;
         });
-
-
     }
+
     function hideNoCategory () {
         $categoryGroups.each(function () {
             var $this = $(this);

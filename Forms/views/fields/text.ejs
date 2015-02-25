@@ -22,5 +22,11 @@
             <%= __('form.validator.too_long') %></span>
         <span class="validator-error alert alert-danger help-block many-words" style="display: none;">
             <%= __('form.validator.many_words') %></span>
+
+        <%if (field.post_error_text) {%>
+        <span class="validator-error alert alert-danger help-block post_error">
+            <%= field.post_error_text %>
+        </span>
+        <% } %>
     </div>
 </div>

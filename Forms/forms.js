@@ -37,14 +37,21 @@ function generateForm(data, form_format_json, show_validation_errors) {
             value = data[field.id];
         }
 
+        var post_err = null;
+        if(data[field.post_error] !== undefined) {
+            post_err = data[field.post_error];
+        }
+
         field.value = value;
+        field.post_error_text = post_err;
 
         var is_valid = true;
         if(show_validation_errors) {
             is_valid = validateFieldValue(value, field);
         }
 
-        formData.push(drawField(field, !is_valid));
+        if(value !== null)
+            formData.push(drawField(field, !is_valid));
     }
     return formData;
 }
@@ -56,9 +63,10 @@ function generateForm(data, form_format_json, show_validation_errors) {
  * @param data default field values from database or req.body
  */
 function widgetShowForm(form_format_json, data) {
-
     //Create form data for form
     var form_data = generateForm(data, form_format_json.fields, false);
+
+    form_format_json.confirm_button_text = form_format_json.fields[form_format_json.fields.length - 1].confirm_button_text;
     return {
         view: ME.view('form'),
         options: {
@@ -142,8 +150,10 @@ var validators = {
     "number": notImplemented,
     "price": validatePrice,
     "price-with-checkbox": validatePrice,
-    "text": notImplemented
+    "text": notImplemented,
+    "password-with-confirm": notImplemented
 };
+
 
 /**
  * Function validates given values and returns only values that are valid

@@ -16,7 +16,11 @@
 
     <div class="text-right col-sm-12">
         <div class="row">
-            <input type="submit" id="to-submit" class="btn btn-primary btn-lg" value="<%= __('book_description.button.save') %>"/>
+            <input type="submit" id="to-submit" class="btn btn-primary btn-lg" value="<%if(!formData.confirm_button_text){%>
+            <%= __('book_description.button.save') %> <%} else {%>
+            <%= __(formData.confirm_button_text)%>
+            <%}%>
+            "/>
         </div>
     </div>
 </form>
