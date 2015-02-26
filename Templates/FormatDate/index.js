@@ -6,7 +6,7 @@ var moment = require('moment');
 
 function formatDate(locale, date) {
     var d = moment(date);
-    d.lang(locale);
+    d.locale(locale);
     return "<span class='date' title='"+d.format('LLL')+"'>"+d.fromNow()+"</span>";
 }
 
