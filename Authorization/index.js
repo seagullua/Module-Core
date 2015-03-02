@@ -5,6 +5,14 @@ var ConfirmEmail = include('Core/Authorization/ConfirmEmail');
 var Config = include('Core/Config');
 var Locale = include('Core/Locale');
 var crypto = require('crypto');
+var url = require('url');
+
+function invalidateCache(baseurl) {
+    var origin = url.parse(baseurl, true);
+    delete origin.search;
+    origin.query.param = Math.floor(Math.random()*100000000);
+    return url.format(origin);
+}
 
 function passwordHash(password) {
     var shasum = crypto.createHash('sha1');
@@ -136,9 +144,12 @@ function signInUser(email, password, callback) {
     )(req, res);
 }
 
+
+
 exports.signUpUser = signUpUser;
 exports.encodePassword = encodePassword;
 exports.changeUserPassword = changeUserPassword;
+exports.invalidateCache = invalidateCache;
 
 exports.configureModules = function(app) {
     app.request.signInUser = signInUser;

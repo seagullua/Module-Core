@@ -1,5 +1,6 @@
 var Urls = include('Core/Urls');
 var AuthorizationForm = include('Core/Authorization/Form');
+var Auth = include('Core/Authorization');
 
 function performRedirect(req, res, redirect_to, redirect_back_to_url) {
     if(!redirect_back_to_url) {
@@ -45,7 +46,7 @@ function redirectBack(req, res){
         req.session.signin_redirect = null;
         delete req.session.signin_redirect;
     }
-    res.redirect(url);
+    res.redirect(Auth.invalidateCache(url));
 }
 
 exports.configureModules = function(app) {
