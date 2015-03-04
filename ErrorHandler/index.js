@@ -9,9 +9,11 @@ res.showError = function(error_code, err) {
     if(Config.production) {
         err = undefined;
     }
+    var __ = this.__;
     this.status(error_code).render(ME.view('error_page'), {
         error_code: error_code,
-        err: err
+        err: err,
+        __: __
     });
 };
 req.showError = function(error_code, err) {
