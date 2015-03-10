@@ -178,9 +178,54 @@ function createImageThumbnail(source_file, destination_file_name, thumbnail_size
     });
 }
 
+/**
+ * Removes image and all it's thumbnails by given image path
+ * @param image_path path to original image
+ * @param sizes_in array of thumbnails sizes to remove, could be null
+ * @param callback to return an error
+ */
+function removeImage(image_path, sizes_in, callback) {
+    fse.ensureFile(image_path, function(err) {
+        if(err) {
+            return callback(err);
+        }
+
+        fse.remove(image_path, function(err) {
+            if(err) {
+                return callback(err);
+            }
+
+            if (sizes_in) {
+                for(var i =0; i<sizes_in.length; ++i) {
+
+                    !function outer(i) {
+                        var resized_path = getSmallImagePath(image_path, sizes_in[i]);
+
+                        fse.ensureFile(resized_path, function (err) {
+                            console.log(resized_path);
+                            if (err) {
+                                return callback(err);
+                            }
+
+                            fse.remove(resized_path, function (err) {
+                                if (err) {
+                                    return callback(err);
+                                }
+                                console.log("removing ", resized_path);
+                            });
+                        });
+                    }(i)
+                }
+                callback(null);
+            }
+        });
+    });
+}
+
 exports.getSmallImageName = getSmallImageName;
 exports.getSmallImagePath = getSmallImagePath;
 exports.saveImage = saveImage;
 exports.getImageSize = getImageSize;
 exports.createImageThumbnail = createImageThumbnail;
+exports.removeImage = removeImage;
 exports.SUPPORTED_FORMATS = SUPPORTED_FORMATS;
