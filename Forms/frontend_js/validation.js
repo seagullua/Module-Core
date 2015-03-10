@@ -301,7 +301,7 @@ function FormValidator(options) {
 
             var error;
             // checking that there is no more than 5 words here!
-            if (field.id == "keyWords") {
+            if (field.id == "keyWords" || field.id == "tags") {
                 var words = $.map(input.val().split(/[\s,]+/), function (el) { return el.trim(); } );
                 if (words.length > 5) {
                     valid = false;
