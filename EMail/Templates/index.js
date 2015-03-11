@@ -4,6 +4,7 @@ var Render = include('Core/Templates/Render');
 var Locale = include('Core/Locale');
 var Less = include('System/Loaders/Less');
 var juice = require('juice');
+var Urls = include('Core/Urls');
 
 /**
  * Create function __ for given locale
@@ -27,6 +28,7 @@ var __cache = {};
 function renderEmailTemplate(view, language, params) {
     params.ME = view.module;
     params.__ = createTranslationFunction(language);
+    params.urls = Urls;
 
     //var path_to_folder = View.viewFileName(view);
     var html = Render.renderTemplateLocal({}, view, params);

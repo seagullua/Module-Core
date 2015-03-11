@@ -19,12 +19,12 @@ function generateUserConfirmationCode(user) {
  * @param user full User object from database
  */
 function generateUserConfirmationLink(user) {
-    var confirmation_link = Urls.getFullUrl(
+    var confirmation_link = Urls.urlEmail(Urls.getFullUrl(
         Urls.urlUserEmailConfirmationLink(
             user.email,
             generateUserConfirmationCode(user)
         )
-    );
+    ));
     return confirmation_link;
 }
 
